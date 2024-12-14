@@ -4,9 +4,9 @@ class Coin:
         self.name = name
         #current price
         self.price = price
-        #ratio of holders with over 5% market cap
+        #ratio of holders versus mcap
         self.holder_ratio = holder_ratio
-        #wallet adresses of holders with over 7%
+        #wallet adresses of holders with over 5%
         self.big_holders = big_holders
         #percent of buyers with more than 2 purchases in the last month
         self.repeat_buyers = repeat_buyers
