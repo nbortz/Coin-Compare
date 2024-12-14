@@ -20,7 +20,15 @@ class Coin:
                 f"holder_ratio={self.holder_ratio}, big_holders={self.big_holders}, "
                 f"repeat_buyers={self.repeat_buyers}, growth_week={self.growth_week}, "
                 f"growth_month={self.growth_month}, growth_6months={self.growth_6months})")
-
+    def __str__(self):
+        return (f"Coin: {self.name}\n"
+                f"Price: {self.price}\n"
+                f"Holder to Market Cap Ratio: {self.holder_ratio}\n"
+                f"Holders with >5% Liquidity: {self.big_holders}\n"
+                f"Repeat Buyers Last Month: {self.repeat_buyers}\n"
+                f"Growth Rate (Week): {self.growth_week}\n"
+                f"Growth Rate (Month): {self.growth_month}\n"
+                f"Growth Rate (6 Months): {self.growth_6months}")
     # Comparison operators for price, can adjust later
     def __eq__(self, other):
         return self.price == other.price
