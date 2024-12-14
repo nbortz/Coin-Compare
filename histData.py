@@ -2,8 +2,8 @@ import requests
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-def get_crypto_data(coin_id):
-    url = f"https://api.coingecko.com/api/v3/coins/{coin_id}/market_chart?vs_currency=usd&days=365&interval=daily&precision=5"
+def get_crypto_data(coin_id, days, interval):
+    url = f"https://api.coingecko.com/api/v3/coins/{coin_id}/market_chart?vs_currency=usd&days={days}&interval={interval}&precision=5"
     
     headers = {
         "accept": "application/json",
@@ -11,13 +11,13 @@ def get_crypto_data(coin_id):
     }
     
     response = requests.get(url, headers=headers)
-    
+    response.text
     return response.text
 
 def plot_crypto_data(response_text):
     # Convert response text to dictionary
     data = eval(response_text)
-    
+    print(data)
     # Extract prices data
     prices_data = data['prices']
     
@@ -48,5 +48,7 @@ def plot_crypto_data(response_text):
 
 # Example usage:
 coin_id = "dogecoin"
-response_text = get_crypto_data(coin_id)
+days = 600
+interval = "daily"
+response_text = get_crypto_data(coin_id, days, interval)
 plot_crypto_data(response_text)
