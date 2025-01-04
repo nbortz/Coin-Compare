@@ -1,34 +1,31 @@
 class Coin:
-    def __init__(self, name, price, holder_ratio, big_holders, repeat_buyers, growth_week, growth_month, growth_6months):
-        #coin name
+    def __init__(self, name, price, holder_ratio, total_impressions, seven_day_sentiment, time_to_ath):
+        # coin name
         self.name = name
-        #current price
+        # current price
         self.price = price
-        #ratio of holders versus mcap
+        # ratio of holders versus market cap
         self.holder_ratio = holder_ratio
-        #wallet adresses of holders with over 5%
-        self.big_holders = big_holders
-        #percent of buyers with more than 2 purchases in the last month
-        self.repeat_buyers = repeat_buyers
-        #growth rates for week, month and 6 months
-        self.growth_week = growth_week
-        self.growth_month = growth_month
-        self.growth_6months = growth_6months
+        # total impressions
+        self.total_impressions = total_impressions
+        # seven day sentiment analysis from tweet binder
+        self.seven_day_sentiment = seven_day_sentiment
+        # time to all-time high
+        self.time_to_ath = time_to_ath
 
     def __repr__(self):
         return (f"Coin(name={self.name}, price={self.price}, "
-                f"holder_ratio={self.holder_ratio}, big_holders={self.big_holders}, "
-                f"repeat_buyers={self.repeat_buyers}, growth_week={self.growth_week}, "
-                f"growth_month={self.growth_month}, growth_6months={self.growth_6months})")
+                f"holder_ratio={self.holder_ratio}, total_impressions={self.total_impressions}, "
+                f"seven_day_sentiment={self.seven_day_sentiment}, time_to_ath={self.time_to_ath})")
+
     def __str__(self):
         return (f"Coin: {self.name}\n"
                 f"Price: {self.price}\n"
                 f"Holder to Market Cap Ratio: {self.holder_ratio}\n"
-                f"Holders with >5% Liquidity: {self.big_holders}\n"
-                f"Repeat Buyers Last Month: {self.repeat_buyers}\n"
-                f"Growth Rate (Week): {self.growth_week}\n"
-                f"Growth Rate (Month): {self.growth_month}\n"
-                f"Growth Rate (6 Months): {self.growth_6months}")
+                f"Total Impressions: {self.total_impressions}\n"
+                f"Seven Day Sentiment: {self.seven_day_sentiment}\n"
+                f"Time to ATH: {self.time_to_ath}")
+
     # Comparison operators for price, can adjust later
     def __eq__(self, other):
         return self.price == other.price
@@ -49,43 +46,25 @@ class Coin:
     def compare_holder_ratio(self, other):
         return self.holder_ratio == other.holder_ratio
 
-    def compare_big_holders(self, other):
-        return self.big_holders == other.big_holders
-
-    def compare_repeat_buyers(self, other):
-        return self.repeat_buyers == other.repeat_buyers
-
-    def compare_growth_week(self, other):
-        return self.growth_week == other.growth_week
-
-    def compare_growth_month(self, other):
-        return self.growth_month == other.growth_month
-
-    def compare_growth_6months(self, other):
-        return self.growth_6months == other.growth_6months
-
 # Example usage
 bitcoin = Coin(
     name="Bitcoin",
     price=50000,
     holder_ratio=0.05,
-    big_holders=10,
-    repeat_buyers=5000,
-    growth_week=0.02,
-    growth_month=0.05,
-    growth_6months=0.1
+    total_impressions=1000000,
+    seven_day_sentiment=0.8,
+    time_to_ath=8000
 )
 
 ethereum = Coin(
     name="Ethereum",
     price=4000,
     holder_ratio=0.04,
-    big_holders=8,
-    repeat_buyers=3000,
-    growth_week=0.03,
-    growth_month=0.06,
-    growth_6months=0.12
+    total_impressions=800000,
+    seven_day_sentiment=0.75,
+    time_to_ath=9000
 )
 
 print(bitcoin > ethereum)  # Compare prices
 print(bitcoin.compare_holder_ratio(ethereum))  # Compare holder ratios
+print(bitcoin)
