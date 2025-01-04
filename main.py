@@ -1,8 +1,9 @@
 import getHoldertoMcap
 from getTweetData import get_cashtag_mentions
 from getTickerFromMint import get_token_ticker_from_mint_solscan
-import coinClass
+from coinClass import Coin
 import requests
+
 
 # 1. accept user input for the contract address
 newMintAdd = input("Please enter a contract address to compare: ")
@@ -19,4 +20,6 @@ ticker = get_token_ticker_from_mint_solscan(newMintAdd)
 xImpressions = get_cashtag_mentions('$'+ ticker)
 
 # 3. roll data into a coin object
+    # fill this in when data collection is done
+    # newCoin = Coin()
 # 4. compare it against our existing coin objects and return correlation score

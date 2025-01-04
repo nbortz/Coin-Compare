@@ -1,5 +1,5 @@
 from solana.rpc.api import Client
-from solders.pubkey import Pubkey
+from solana.rpc.api import Pubkey
 import requests
 import base64
 import struct
@@ -146,3 +146,6 @@ if __name__ == "getHoldertoMcap.py":
     token_mint = "F5hqdbykXuksp8P78CAZenSvpPShAYKrP2U2MiZMdgFN"
     solana_rpc_url = "https://api.mainnet-beta.solana.com"
     helius_api_key = "96f8d766-bb4f-4b39-b4b1-8ede9278be60"  # Replace with your actual Helius API ke
+
+    ratio = get_holder_to_marketcap_ratio(token_mint, solana_rpc_url, helius_api_key)
+    print(f"Bopcat ratio is {ratio}")
