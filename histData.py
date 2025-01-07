@@ -48,7 +48,7 @@ def plot_crypto_data(response_text):
 
 # Example usage:
 coin_id = "dogecoin"
-days = 600
+days = 364
 interval = "daily"
 response_text = get_crypto_data(coin_id, days, interval)
 plot_crypto_data(response_text)
