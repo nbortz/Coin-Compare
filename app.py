@@ -51,6 +51,10 @@ def plot_crypto_data(prices_data):
 def index():
     return render_template('index.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/plot', methods=['POST'])
 def plot():
     coin_id = request.form['coin_id']
