@@ -142,7 +142,7 @@ def get_holder_to_marketcap_ratio(token_mint: str, solana_rpc_url: str, helius_a
 
 
 # Example usage:
-if __name__ == "getHoldertoMcap.py":
+if __name__ == "__main__":
     token_mint = "F5hqdbykXuksp8P78CAZenSvpPShAYKrP2U2MiZMdgFN"
     solana_rpc_url = "https://api.mainnet-beta.solana.com"
     helius_api_key = "96f8d766-bb4f-4b39-b4b1-8ede9278be60"  # Replace with your actual Helius API ke

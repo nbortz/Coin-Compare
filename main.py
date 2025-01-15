@@ -28,7 +28,8 @@ Comparision) Compare Marketcap, Holder to Marketcap Ratio, Volume, and Impressio
 
 Correlation) Return correlation scores to user on website
 """
-# Declare 
+# Declare global API variables
+
 solRpcUrl = "https://api.mainnet-beta.solana.com"
 helius_api_key = "96f8d766-bb4f-4b39-b4b1-8ede9278be60"
 # Accept user input for the contract address
