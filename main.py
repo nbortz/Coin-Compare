@@ -43,16 +43,12 @@ userTicker = get_token_ticker_from_mint_solscan(newMintAdd)
 userTokenMcap = get_token_market_cap(newMintAdd)
 # Get user token vol
 userTokenVol = get_token_24h_volume(newMintAdd)
+# Get user token Holder to mcap
+userTokenHolders = getHoldertoMcap.get_holder_count(solRpcUrl, newMintAdd)
+userTokenHoldertoMcap = userTokenMcap / userTokenHolders
+
+# Get user token impression count (lifetime)
+userTokenImpressions = get_cashtag_impressions(userTicker)
 
 #TODO: Need function to iterate through compare tokens and determine what date we will be using for each of them, based on user token age
-
-
-
-
-
-
-holderToMcap = getHoldertoMcap.get_holder_to_marketcap_ratio(newMintAdd, solRpcUrl, helius_api_key)
-
-ticker = get_token_ticker_from_mint_solscan(newMintAdd)
-xImpressions = get_cashtag_impressions('$'+ ticker)
 
