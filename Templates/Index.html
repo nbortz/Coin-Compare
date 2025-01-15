@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
+            background-color: #121212;
+            color: #E0E0E0;
             padding-top: 50px;
         }
         .container {
@@ -15,19 +17,46 @@
         .plot {
             margin-top: 20px;
         }
+        .btn-primary {
+            background-color: #6A1B9A;
+            border-color: #6A1B9A;
+        }
+        .btn-primary:hover {
+            background-color: #8E24AA;
+            border-color: #8E24AA;
+        }
+        .btn-link {
+            color: #FFB300;
+        }
+        .btn-link:hover {
+            color: #FFCA28;
+        }
+        .form-control {
+            background-color: #1E1E1E;
+            color: #E0E0E0;
+            border: 1px solid #6A1B9A;
+        }
+        .form-control:focus {
+            background-color: #1E1E1E;
+            color: #E0E0E0;
+            border-color: #8E24AA;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 class="text-center">Crypto Price Plotter</h1>
+        <nav class="text-center">
+            <a href="/" class="btn btn-link">Home</a>
+            <a href="/about" class="btn btn-link">About</a>
+        </nav>
+        <h5 class="text-center">Input a Contract/Mint Address for a coin you're interested in below</h5>
+        <br>
+        <br>
         <form id="plot-form">
             <div class="form-group">
-                <label for="coin_id">Coin ID</label>
+                <label for="Contract/Mint Address">Contract/Mint Address</label>
                 <input type="text" class="form-control" id="coin_id" name="coin_id" required>
-            </div>
-            <div class="form-group">
-                <label for="days">Number of Days</label>
-                <input type="number" class="form-control" id="days" name="days" value="365" required>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Plot</button>
         </form>
