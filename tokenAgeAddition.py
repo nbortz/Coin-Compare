@@ -1,6 +1,6 @@
 import datetime
 
-def add_age_in_days_to_date(benchmarkDate: datetime.date, userTokenAge: int) -> datetime.date:
+def add_age(benchmarkDate: datetime.date, userTokenAge: int) -> datetime.date:
     """
     Adds 'age_in_days' to the 'reference_date' and returns a single date result.
     

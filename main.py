@@ -4,8 +4,10 @@ from getTweetData import get_cashtag_impressions
 from getTickerFromMint import get_token_ticker_from_mint_solscan
 from getTokenMcap import get_token_market_cap
 from getTokenVolume import get_token_24h_volume
+from tokenAgeAddition import add_age
 from coinClass import Coin
 import requests
+import datetime
 
 """
 The main Logic function will intake a mint address from a user. 
@@ -28,10 +30,17 @@ Comparision) Compare Marketcap, Holder to Marketcap Ratio, Volume, and Impressio
 
 Correlation) Return correlation scores to user on website
 """
-# Declare global API variables
+# Declare global variables
 
 solRpcUrl = "https://api.mainnet-beta.solana.com"
 helius_api_key = "96f8d766-bb4f-4b39-b4b1-8ede9278be60"
+bonkLaunchDate = datetime.date(2023,1,5)
+wifLaunchDate = datetime.date(2023,11,21)
+fartcoinLaunchDate = datetime.date(24,10,19)
+fwogLaunchDate = datetime.date(24,7,30)
+gigaLaunchDate = datetime.date(24,1,5)
+goatLaunchDate = datetime.date(24,10,11)
+chillguyLaunchDate = datetime.date(24,11,21)
 # Accept user input for the contract address
 newMintAdd = input("Please enter a contract address to compare: ")
 
@@ -51,4 +60,10 @@ userTokenHoldertoMcap = userTokenMcap / userTokenHolders
 userTokenImpressions = get_cashtag_impressions(userTicker)
 
 #TODO: Need function to iterate through compare tokens and determine what date we will be using for each of them, based on user token age
-
+bonkCompareDate = add_age(bonkLaunchDate, userTokenAge)
+wifCompareDate = add_age(wifLaunchDate, userTokenAge)
+fartcoinCompareDate = add_age(fartcoinLaunchDate, userTokenAge)
+fwogCompareDate = add_age(fwogLaunchDate, userTokenAge)
+gigaCompareDate = add_age(gigaLaunchDate, userTokenAge)
+goatCompareDate = add_age(goatLaunchDate, userTokenAge)
+chillguyCompareDate = add_age(chillguyLaunchDate, userTokenAge)
