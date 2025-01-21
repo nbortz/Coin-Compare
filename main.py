@@ -59,7 +59,7 @@ userTokenHoldertoMcap = userTokenMcap / userTokenHolders
 # Get user token impression count (lifetime)
 userTokenImpressions = get_cashtag_impressions(userTicker)
 
-#TODO: Need function to iterate through compare tokens and determine what date we will be using for each of them, based on user token age
+#Call addAge on each compare token to get the desired conparision date for each
 bonkCompareDate = add_age(bonkLaunchDate, userTokenAge)
 wifCompareDate = add_age(wifLaunchDate, userTokenAge)
 fartcoinCompareDate = add_age(fartcoinLaunchDate, userTokenAge)
@@ -67,3 +67,4 @@ fwogCompareDate = add_age(fwogLaunchDate, userTokenAge)
 gigaCompareDate = add_age(gigaLaunchDate, userTokenAge)
 goatCompareDate = add_age(goatLaunchDate, userTokenAge)
 chillguyCompareDate = add_age(chillguyLaunchDate, userTokenAge)
+
