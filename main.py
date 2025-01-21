@@ -1,6 +1,6 @@
 import getHoldertoMcap
 from getTokenAge import get_token_age_from_dexscreener
-from getTickerFromMint import get_token_ticker_from_mint_solscan
+from getTickerFromMint import get_token_ticker_from_mint_dexscreener
 from getTokenMcap import get_token_market_cap
 from getTokenVolume import get_token_24h_volume
 from tokenAgeAddition import add_age
