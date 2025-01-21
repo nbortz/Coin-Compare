@@ -46,7 +46,7 @@ newMintAdd = input("Please enter a contract address to compare: ")
 # Get user token age
 userTokenAge = get_token_age_from_dexscreener(newMintAdd)
 # Get the ticker
-userTicker = get_token_ticker_from_mint_solscan(newMintAdd)
+userTicker = get_token_ticker_from_mint_dexscreener(newMintAdd)
 # Get user token mcap
 userTokenMcap = get_token_market_cap(newMintAdd)
 # Get user token vol
