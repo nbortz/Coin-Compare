@@ -1,6 +1,5 @@
 import getHoldertoMcap
 from getTokenAge import get_token_age_from_dexscreener
-from getTweetData import get_cashtag_impressions
 from getTickerFromMint import get_token_ticker_from_mint_solscan
 from getTokenMcap import get_token_market_cap
 from getTokenVolume import get_token_24h_volume
@@ -56,8 +55,7 @@ userTokenVol = get_token_24h_volume(newMintAdd)
 userTokenHolders = getHoldertoMcap.get_holder_count(solRpcUrl, newMintAdd)
 userTokenHoldertoMcap = userTokenMcap / userTokenHolders
 
-# Get user token impression count (lifetime)
-userTokenImpressions = get_cashtag_impressions(userTicker)
+# TODO: Get user token impression count (lifetime)
 
 #Call addAge on each compare token to get the desired conparision date for each
 bonkCompareDate = add_age(bonkLaunchDate, userTokenAge)

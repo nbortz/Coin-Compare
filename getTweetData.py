@@ -1,72 +1,153 @@
+import time
 import requests
-from datetime import datetime
 
-def get_cashtag_impressions(api_key, cashtag, start_date, end_date):
+def create_twitter_count_report(api_key, query_raw, report_type="7-day"):
     """
-    Retrieves the impression count for a given cashtag within a specified date range 
-    using the TweetBinder API.
-
+    Creates a Twitter count report on TweetBinder and returns the resourceId needed to fetch stats.
+    
     Args:
         api_key (str): Your TweetBinder API key.
-        cashtag (str): The cashtag you want to analyze (e.g., '$AAPL').
-        start_date (str): Start date in 'YYYY-MM-DD' format.
-        end_date (str): End date in 'YYYY-MM-DD' format.
-
+        query_raw (str): The raw query string (e.g., "(Osasuna OR #Osasuna) -@RealMadrid lang:en").
+        report_type (str): '7-day' or 'historical'.
+    
     Returns:
-        int: The total impression count for the specified cashtag within the date range.
-             Returns None if no data is found or the request fails.
+        str: The resourceId for the created report.
+        None: If the request fails or the response is invalid.
     """
-
-    # Replace with the actual TweetBinder endpoint for cashtag impressions
-    # (This endpoint is hypothetical and must be adjusted to match the real one)
-    url = "https://api.tweetbinder.com/v2/cashtag/impressions"
-
-    # Prepare query parameters
-    params = {
-        "api_key": api_key,
-        "cashtag": cashtag.replace('$', ''),  # e.g., convert '$AAPL' to 'AAPL' if required
-        "start_date": start_date,             # e.g., '2025-01-01'
-        "end_date": end_date,                 # e.g., '2025-01-09'
+    # 1) Construct the POST URL
+    url = f"https://api.tweetbinder.com/reports/twitter-count/{report_type}"
+    
+    # 2) Build the JSON payload as per TweetBinder docs
+    payload = {
+        "query": {
+            "raw": query_raw
+        }
     }
-
+    
+    # 3) Include the API key either in headers or query string (depends on TweetBinder’s requirements)
+    #    The docs are not 100% clear, so here we put it as a query parameter for illustration.
+    params = {
+        "api_key": api_key
+    }
+    
     try:
-        response = requests.get(url, params=params)
-        response.raise_for_status()  # Raise an exception for 4xx/5xx errors
-
+        response = requests.post(url, params=params, json=payload)
+        response.raise_for_status()
+        
         # Hypothetical response structure:
         # {
+        #   "status": "ok",
         #   "data": {
-        #     "cashtag": "AAPL",
-        #     "start_date": "2025-01-01",
-        #     "end_date": "2025-01-09",
-        #     "impressions": 123456
+        #       "resourceId": "xyz12345",
+        #       ...
         #   }
         # }
-        json_data = response.json()
-
-        # Adjust parsing according to TweetBinder's actual JSON structure
-        impressions = json_data.get("data", {}).get("impressions")
-
-        return impressions
+        data = response.json()
+        resource_id = data.get("data", {}).get("resourceId")
+        
+        if resource_id:
+            return resource_id
+        else:
+            print("No resourceId found in the response.")
+            return None
 
     except requests.exceptions.RequestException as e:
-        print(f"Request error: {e}")
-        return None
-    except ValueError:
-        print("Failed to parse response.")
+        print(f"Error creating Twitter count report: {e}")
         return None
 
 
-# Example usage:
+def get_report_stats(api_key, resource_id):
+    """
+    Retrieves the stats for a previously created Twitter count report.
+    
+    Args:
+        api_key (str): Your TweetBinder API key.
+        resource_id (str): The resourceId returned by create_twitter_count_report().
+    
+    Returns:
+        int: The number of posts (tweets) for the query.
+        None: If the request fails or the response is invalid.
+    """
+    # Hypothetical endpoint for retrieving stats:
+    url = f"https://api.tweetbinder.com/reports/{resource_id}"
+    
+    # The docs might require a query parameter or header for the API key.
+    params = {
+        "api_key": api_key
+    }
+    
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        
+        # Example of a possible JSON structure:
+        # {
+        #   "status": "ok",
+        #   "data": {
+        #       "tweets": 12345,
+        #       ...
+        #   }
+        # }
+        data = response.json()
+        tweets = data.get("data", {}).get("tweets")
+        
+        return tweets
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error retrieving report stats: {e}")
+        return None
+
+
+def get_twitter_count(api_key, query_raw, report_type="7-day", max_retries=5, delay=2):
+    """
+    Combines the creation of a Twitter count report and the retrieval of stats,
+    waiting (if necessary) for the report to be generated.
+    
+    Args:
+        api_key (str): Your TweetBinder API key.
+        query_raw (str): The raw query string.
+        report_type (str): '7-day' or 'historical'.
+        max_retries (int): How many times we’ll retry fetching the stats if they’re not ready.
+        delay (int): Delay in seconds between retries.
+    
+    Returns:
+        int: The total number of tweets for the query.
+        None: If the report fails or stats are never retrieved.
+    """
+    resource_id = create_twitter_count_report(api_key, query_raw, report_type=report_type)
+    if not resource_id:
+        return None
+    
+    # Poll the "Get report stats" endpoint until we get the result or exhaust retries
+    for attempt in range(max_retries):
+        tweet_count = get_report_stats(api_key, resource_id)
+        
+        if tweet_count is not None:
+            return tweet_count
+        
+        # If stats are not ready yet, wait and retry
+        print(f"Report not ready (attempt {attempt + 1}), waiting {delay}s before retrying...")
+        time.sleep(delay)
+    
+    print("Exceeded maximum retries. Stats could not be retrieved.")
+    return None
+
+
 if __name__ == "__main__":
-    # You would replace these values with your actual credentials and desired date range
-    my_api_key = "YOUR_TWEETBINDER_API_KEY"
-    cashtag = "$AAPL"
-    start_date_str = "2025-01-01"
-    end_date_str = "2025-01-09"
-
-    impressions_count = get_cashtag_impressions(my_api_key, cashtag, start_date_str, end_date_str)
-    if impressions_count is not None:
-        print(f"Impressions for {cashtag} from {start_date_str} to {end_date_str}: {impressions_count}")
+    # Example usage:
+    # Replace these with your actual API key and query
+    my_api_key = "43015a4f-5110-47c4-923d-d8ecfae37b70"
+    
+    # For a cashtag, you might do something like:
+    # query = "($AAPL) OR #AAPL"
+    # but you can add or remove operators depending on your needs.
+    query = "$BTC"
+    
+    # Decide if you want a 7-day or historical report
+    report_type = "historical"
+    
+    count = get_twitter_count(my_api_key, query, report_type)
+    if count is not None:
+        print(f"Number of posts (tweets) for the query '{query}': {count}")
     else:
-        print("No impression data available or request failed.")
+        print("Failed to retrieve the count.")
