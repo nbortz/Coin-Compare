@@ -10,14 +10,14 @@
 
 #Compare Impressions
 
-#Each comparison should check that the data is within a certain threshold
-#maybe 10%, then look at the %difference
-
 #We should try to note if the difference is positive or negative for the coin
 
 import pandas as pd
 
-def load_single_csv_up_to_date(file_name, cutoff_date):
+
+#get benchmark data returns the benchmark data from inception to a given date in a pandas dataframe
+
+def get_benchmark_data(file_name, cutoff_date):
     # Read the CSV file into a dataframe with the correct delimiter
     df = pd.read_csv(file_name, delimiter=';')
     
@@ -35,9 +35,59 @@ def load_single_csv_up_to_date(file_name, cutoff_date):
     return filtered_df
 
 
+#Compare Mcap returns a percent difference between user coin and benchmark
+def compare_mcap(benchmark_df, coin_mCap):
+    # Get the last entry in the marketCap column
+    last_mCap = benchmark_df['marketCap'].iloc[-1]
+    
+    # Calculate the percentage difference
+    percentage_difference = ((coin_mCap - last_mCap) / last_mCap) * 100
+    
+    # Return the percentage difference
+    return percentage_difference
+
+
+#Compare impressions from coin inception to present and benchmark inception to certain date
+def compare_impressions(benchmark_impressions, coin_impressions):
+    # Calculate the percentage difference
+    percentage_difference = ((coin_impressions - benchmark_impressions) / benchmark_impressions) * 100
+
+    #calculate numerical diff
+    total_diff = coin_impressions - benchmark_impressions
+    # Return the percentage difference
+    return percentage_difference, total_diff
+
+
+
+#Compare holders of coin at present and benchmark at time from inception
+def compare_holders(benchmark_holder_count, coin_holder_count):
+    
+    # Calculate the percentage difference
+    percentage_difference = ((coin_holder_count - benchmark_holder_count) / benchmark_holder_count) * 100
+
+    #calculate numerical diff
+    total_diff = coin_holder_count - benchmark_holder_count
+    # Return the percentage difference
+    return percentage_difference, total_diff
+
+
+
+
+
+
+
 # Example usage
 file_name = 'HistoricalData\Just a chill guy_11_8_2024-1_9_2025_historical_data_coinmarketcap.csv'
 cutoff_date = '2025-1-1'
-filtered_df = load_single_csv_up_to_date(file_name, cutoff_date)
-print(filtered_df)
+benchmark_df = get_benchmark_data(file_name, cutoff_date)
+print(benchmark_df)
+
+
+# Example coin market cap value for testing
+coin_mCap = 9.270706e+08
+
+# Calculate the percentage difference using compare_mcap function
+percentage_difference = compare_mcap(benchmark_df, coin_mCap)
+
+print(f"Percentage difference between coin market cap and last benchmark market cap: {percentage_difference:.2f}%")
 
