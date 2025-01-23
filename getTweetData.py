@@ -58,6 +58,8 @@ query = {
         "endDate": 1704067200
     }
 }
+
+#Change historical to 7-day to change report type
 count_id = create_twitter_count("historical", query)
 time.sleep(7)
 # If count ID is obtained, view the count data
