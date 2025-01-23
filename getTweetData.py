@@ -55,7 +55,7 @@ query = {
     "query": {
         "raw": "$btc",
         "startDate": 1672531200,
-        "endDate": 1704067200,
+        "endDate": 1704067200
     }
 }
 count_id = create_twitter_count("historical", query)
