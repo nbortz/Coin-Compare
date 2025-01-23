@@ -1,7 +1,11 @@
-import time
 import requests
 
-def create_twitter_count_report(api_token, query_raw, start_date, end_date):
+<<<<<<< HEAD
+# Define the API route and key
+api_route = "https://api.tweetbinder.com"
+api_key = "43015a4f-5110-47c4-923d-d8ecfae37b70"
+=======
+def create_twitter_count_report(api_key, query_raw, start_date, end_date):
     """
     Creates a *historical* Twitter count report on TweetBinder (API v2) and returns
     the resourceId needed to fetch stats.
@@ -54,13 +58,30 @@ def create_twitter_count_report(api_token, query_raw, start_date, end_date):
         else:
             print("No resourceId found in the response.")
             return None
+>>>>>>> 02885df2bc4a0360279f4b2594b7e8dba086d9f9
 
-    except requests.exceptions.RequestException as e:
-        print(f"Error creating Twitter count report: {e}")
-        return None
+# Construct the full URL
+url = f"{api_route}/me/balances"
 
+# Define the headers with the authorization token
+headers = {
+    "Authorization": f"Bearer {api_key}"
+}
 
-def get_report_stats(api_token, resource_id):
+<<<<<<< HEAD
+# Make the GET request with headers
+response = requests.get(url, headers=headers)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Parse the JSON response
+    balances = response.json()
+    print("Balances:", balances)
+else:
+    print(f"Failed to retrieve balances. Status code: {response.status_code}")
+    print("Response:", response.text)
+=======
+def get_report_stats(api_key, resource_id):
     """
     Retrieves the stats (impression count) for a previously created TweetBinder report.
     
@@ -156,3 +177,4 @@ if __name__ == "__main__":
         print(f"Number of impressions for '{query}' from {start_date} to {end_date}: {total_impressions}")
     else:
         print("Failed to retrieve impression count.")
+>>>>>>> 02885df2bc4a0360279f4b2594b7e8dba086d9f9
