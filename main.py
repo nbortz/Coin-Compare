@@ -7,6 +7,7 @@ from tokenAgeAddition import add_age
 from coinClass import Coin
 import requests
 import datetime
+from compareFunctions import get_benchmark_data, compare_mcap, compare_volume, percent_and_total_diff
 
 """
 The main Logic function will intake a mint address from a user. 
@@ -52,8 +53,8 @@ userTokenMcap = get_token_market_cap(newMintAdd)
 # Get user token vol
 userTokenVol = get_token_24h_volume(newMintAdd)
 # Get user token Holder to mcap
-userTokenHolders = getHoldertoMcap.get_holder_count(solRpcUrl, newMintAdd)
-userTokenHoldertoMcap = userTokenMcap / userTokenHolders
+#userTokenHolders = getHoldertoMcap.get_holder_count(solRpcUrl, newMintAdd)
+#userTokenHoldertoMcap = userTokenMcap / userTokenHolders
 
 # TODO: Get user token impression count (lifetime)
 
@@ -66,3 +67,20 @@ gigaCompareDate = add_age(gigaLaunchDate, userTokenAge)
 goatCompareDate = add_age(goatLaunchDate, userTokenAge)
 chillguyCompareDate = add_age(chillguyLaunchDate, userTokenAge)
 
+# Integrate calls to compare functions
+def compare_token_with_benchmark(benchmark_file, compare_date, user_mcap, user_vol):
+    benchmark_data = get_benchmark_data(benchmark_file, compare_date, ',')
+    
+    mcap_diff = compare_mcap(benchmark_data, user_mcap)
+    vol_diff = compare_volume(benchmark_data, user_vol)
+    
+    return mcap_diff, vol_diff
+
+# Example usage
+bonk_mcap_diff, bonk_vol_diff = compare_token_with_benchmark('HistoricalData/bonk-tokenHist.csv', bonkCompareDate, userTokenMcap, userTokenVol)
+#wif_mcap_diff, wif_vol_diff = compare_token_with_benchmark('HistoricalData/dogwifhatHist.csv', wifCompareDate, userTokenMcap, userTokenVol)
+# Repeat for other tokens...
+
+print(f"Bonk Market Cap Difference: {bonk_mcap_diff}%")
+print(f"Bonk Volume Difference: {bonk_vol_diff}%")
+# Print other comparisons...
