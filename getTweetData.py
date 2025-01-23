@@ -1,13 +1,13 @@
 import time
 import requests
 
-def create_twitter_count_report(api_key, query_raw, start_date, end_date):
+def create_twitter_count_report(api_token, query_raw, start_date, end_date):
     """
-    Creates a *historical* Twitter count report on TweetBinder and returns
+    Creates a *historical* Twitter count report on TweetBinder (API v2) and returns
     the resourceId needed to fetch stats.
 
     Args:
-        api_key (str): Your TweetBinder API key.
+        api_token (str): Your TweetBinder API token.
         query_raw (str): The raw query string (e.g., "$AAPL OR #AAPL").
         start_date (str): Start of the date range (e.g., "2022-01-01").
         end_date (str): End of the date range (e.g., "2022-01-31").
@@ -16,31 +16,29 @@ def create_twitter_count_report(api_key, query_raw, start_date, end_date):
         str: The resourceId for the created report.
         None: If the request fails or the response is invalid.
     """
-    # 1) Always use the 'historical' endpoint for TweetBinder v2:
     url = "https://api.tweetbinder.com/reports/twitter-count/historical"
-
-    # 2) Build the JSON payload as per TweetBinder docs for historical queries
+    
+    # JSON payload for historical queries (adjust keys to match actual TweetBinder specs if needed)
     payload = {
         "query": {
             "raw": query_raw
         },
-        # The key names below ("time", "from", "to") might differ depending on TweetBinder’s specs.
         "time": {
             "from": start_date,
             "to": end_date
         }
     }
-
-    # 3) Include the API key. Depending on TweetBinder docs, it might need to go as a header or in params.
-    params = {
-        "api_key": api_key
+    
+    # Place the API token in the Authorization header using Bearer format
+    headers = {
+        "Authorization": f"Bearer {api_token}"
     }
-
+    
     try:
-        response = requests.post(url, params=params, json=payload)
+        response = requests.post(url, headers=headers, json=payload)
         response.raise_for_status()
         
-        # Hypothetical response structure:
+        # Hypothetical JSON response structure:
         # {
         #   "status": "ok",
         #   "data": {
@@ -62,12 +60,12 @@ def create_twitter_count_report(api_key, query_raw, start_date, end_date):
         return None
 
 
-def get_report_stats(api_key, resource_id):
+def get_report_stats(api_token, resource_id):
     """
     Retrieves the stats (impression count) for a previously created TweetBinder report.
     
     Args:
-        api_key (str): Your TweetBinder API key.
+        api_token (str): Your TweetBinder API token.
         resource_id (str): The resourceId returned by create_twitter_count_report().
     
     Returns:
@@ -77,12 +75,13 @@ def get_report_stats(api_key, resource_id):
     # Hypothetical endpoint for retrieving stats:
     url = f"https://api.tweetbinder.com/reports/{resource_id}"
 
-    params = {
-        "api_key": api_key
+    # Bearer token format
+    headers = {
+        "Authorization": f"Bearer {api_token}"
     }
 
     try:
-        response = requests.get(url, params=params)
+        response = requests.get(url, headers=headers)
         response.raise_for_status()
         
         # Example of a possible JSON structure:
@@ -96,7 +95,7 @@ def get_report_stats(api_key, resource_id):
         # }
         data = response.json()
         
-        # Adjust the key below if TweetBinder uses a different name for impressions
+        # Adjust the key if TweetBinder uses something else instead of "impressions"
         impressions = data.get("data", {}).get("impressions")
 
         if impressions is not None:
@@ -110,12 +109,12 @@ def get_report_stats(api_key, resource_id):
         return None
 
 
-def get_historical_impression_count(api_key, query_raw, start_date, end_date, max_retries=5, delay=5):
+def get_historical_impression_count(api_token, query_raw, start_date, end_date, max_retries=5, delay=5):
     """
     Creates a historical report and retrieves the impression count within the given date range.
 
     Args:
-        api_key (str): Your TweetBinder API key.
+        api_token (str): Your TweetBinder API token.
         query_raw (str): The raw query string (e.g., "$BTC").
         start_date (str): Start of the date range (e.g., "2022-01-01").
         end_date (str): End of the date range (e.g., "2022-01-31").
@@ -126,13 +125,13 @@ def get_historical_impression_count(api_key, query_raw, start_date, end_date, ma
         int: The total number of impressions for the query in the specified date range.
         None: If the report or impressions could not be retrieved.
     """
-    resource_id = create_twitter_count_report(api_key, query_raw, start_date, end_date)
+    resource_id = create_twitter_count_report(api_token, query_raw, start_date, end_date)
     if not resource_id:
         return None
 
     # Poll the "Get report stats" endpoint until we get a valid impressions count or exhaust retries
     for attempt in range(max_retries):
-        impressions = get_report_stats(api_key, resource_id)
+        impressions = get_report_stats(api_token, resource_id)
         if impressions is not None:
             return impressions
 
@@ -145,12 +144,14 @@ def get_historical_impression_count(api_key, query_raw, start_date, end_date, ma
 
 if __name__ == "__main__":
     # Example usage:
-    my_api_key = "43015a4f-5110-47c4-923d-d8ecfae37b70"
+    my_api_token = "43015a4f-5110-47c4-923d-d8ecfae37b70"
     query = "$BTC"
     start_date = "2022-01-01"
     end_date = "2022-01-31"
 
-    total_impressions = get_historical_impression_count(my_api_key, query, start_date, end_date)
+    total_impressions = get_historical_impression_count(
+        my_api_token, query, start_date, end_date
+    )
     if total_impressions is not None:
         print(f"Number of impressions for '{query}' from {start_date} to {end_date}: {total_impressions}")
     else:
