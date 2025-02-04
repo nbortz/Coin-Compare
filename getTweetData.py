@@ -53,9 +53,8 @@ get_balances()
 # Create Twitter count for historical type with the specified query which uses Unix time for dates
 query = {
     "query": {
-        "raw": "$btc",
-        "startDate": 1672531200,
-        "endDate": 1704067200
+        "raw": "$Sol"
+        
     }
 }
 
