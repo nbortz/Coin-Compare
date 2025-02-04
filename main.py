@@ -36,11 +36,11 @@ solRpcUrl = "https://api.mainnet-beta.solana.com"
 helius_api_key = "96f8d766-bb4f-4b39-b4b1-8ede9278be60"
 bonkLaunchDate = datetime.date(2023,1,5)
 wifLaunchDate = datetime.date(2023,11,21)
-fartcoinLaunchDate = datetime.date(24,10,19)
-fwogLaunchDate = datetime.date(24,7,30)
-gigaLaunchDate = datetime.date(24,1,5)
-goatLaunchDate = datetime.date(24,10,11)
-chillguyLaunchDate = datetime.date(24,11,21)
+fartcoinLaunchDate = datetime.date(2024,10,19)
+fwogLaunchDate = datetime.date(2024,7,30)
+gigaLaunchDate = datetime.date(2024,1,5)
+goatLaunchDate = datetime.date(2024,10,11)
+chillguyLaunchDate = datetime.date(2024,11,21)
 # Accept user input for the contract address
 newMintAdd = input("Please enter a contract address to compare: ")
 
