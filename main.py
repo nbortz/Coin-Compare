@@ -5,7 +5,6 @@ from getTokenMcap import get_token_market_cap
 from getTokenVolume import get_token_24h_volume
 from tokenAgeAddition import add_age
 from coinClass import Coin
-import getTweetData
 import requests
 import datetime
 from compareFunctions import get_benchmark_data, compare_mcap, compare_volume, percent_and_total_diff
@@ -59,8 +58,8 @@ userTokenVol = get_token_24h_volume(newMintAdd)
 #userTokenHoldertoMcap = userTokenMcap / userTokenHolders
 
 # TODO: Get user token impression count (lifetime)
-countId = getTweetData.create_twitter_count('historical', userTicker)
-userImpressions = getTweetData.view_count_data(countId)
+#countId = getTweetData.create_twitter_count('historical', userTicker)
+#userImpressions = getTweetData.view_count_data(countId)
 
 #Call addAge on each compare token to get the desired conparision date for each
 bonkCompareDate = add_age(bonkLaunchDate, userTokenAge)
