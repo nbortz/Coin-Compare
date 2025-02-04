@@ -5,7 +5,6 @@ from getTokenMcap import get_token_market_cap
 from getTokenVolume import get_token_24h_volume
 from tokenAgeAddition import add_age
 from coinClass import Coin
-import getTweetData
 import requests
 import datetime
 from compareFunctions import get_benchmark_data, compare_mcap, compare_volume, percent_and_total_diff
@@ -37,11 +36,11 @@ solRpcUrl = "https://api.mainnet-beta.solana.com"
 helius_api_key = "96f8d766-bb4f-4b39-b4b1-8ede9278be60"
 bonkLaunchDate = datetime.date(2023,1,5)
 wifLaunchDate = datetime.date(2023,11,21)
-fartcoinLaunchDate = datetime.date(24,10,19)
-fwogLaunchDate = datetime.date(24,7,30)
-gigaLaunchDate = datetime.date(24,1,5)
-goatLaunchDate = datetime.date(24,10,11)
-chillguyLaunchDate = datetime.date(24,11,21)
+fartcoinLaunchDate = datetime.date(2024,10,19)
+fwogLaunchDate = datetime.date(2024,7,30)
+gigaLaunchDate = datetime.date(2024,1,5)
+goatLaunchDate = datetime.date(2024,10,11)
+chillguyLaunchDate = datetime.date(2024,11,21)
 # Accept user input for the contract address
 newMintAdd = input("Please enter a contract address to compare: ")
 
@@ -59,8 +58,8 @@ userTokenVol = get_token_24h_volume(newMintAdd)
 #userTokenHoldertoMcap = userTokenMcap / userTokenHolders
 
 # TODO: Get user token impression count (lifetime)
-countId = getTweetData.create_twitter_count('historical', userTicker)
-userImpressions = getTweetData.view_count_data(countId)
+#countId = getTweetData.create_twitter_count('historical', userTicker)
+#userImpressions = getTweetData.view_count_data(countId)
 
 #Call addAge on each compare token to get the desired conparision date for each
 bonkCompareDate = add_age(bonkLaunchDate, userTokenAge)
