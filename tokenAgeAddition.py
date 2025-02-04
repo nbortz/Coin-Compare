@@ -8,4 +8,7 @@ def add_age(benchmarkDate: datetime.date, userTokenAge: int) -> datetime.date:
     :param age_in_days: An integer representing the number of days to add.
     :return: A datetime.date object resulting from the addition of 'age_in_days' to 'reference_date'.
     """
-    return benchmarkDate + datetime.timedelta(days=userTokenAge)
+    new_date = benchmarkDate + datetime.timedelta(days=userTokenAge)
+    print(new_date.strftime("%Y-%m-%d"))
+    return new_date
+

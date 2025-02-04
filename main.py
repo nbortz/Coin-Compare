@@ -46,16 +46,13 @@ newMintAdd = input("Please enter a contract address to compare: ")
 
 # Get user token age
 userTokenAge = get_token_age_from_dexscreener(newMintAdd)
-print(userTokenAge)
+
 # Get the ticker
 userTicker = get_token_ticker_from_mint_dexscreener(newMintAdd)
-print(userTicker)
 # Get user token mcap
 userTokenMcap = get_token_market_cap(newMintAdd)
-print(userTokenMcap)
 # Get user token vol
 userTokenVol = get_token_24h_volume(newMintAdd)
-print(userTokenVol)
 # Get user token Holder to mcap
 #userTokenHolders = getHoldertoMcap.get_holder_count(solRpcUrl, newMintAdd)
 #userTokenHoldertoMcap = userTokenMcap / userTokenHolders
@@ -82,9 +79,15 @@ def compare_token_with_benchmark(benchmark_file, compare_date, user_mcap, user_v
 
 # Example usage
 bonk_mcap_diff, bonk_vol_diff = compare_token_with_benchmark('HistoricalData/bonk-tokenHist.csv', bonkCompareDate, userTokenMcap, userTokenVol)
-#wif_mcap_diff, wif_vol_diff = compare_token_with_benchmark('HistoricalData/dogwifhatHist.csv', wifCompareDate, userTokenMcap, userTokenVol)
+wif_mcap_diff, wif_vol_diff = compare_token_with_benchmark('HistoricalData/dogwifhatHist.csv', wifCompareDate, userTokenMcap, userTokenVol)
+print(fartcoinCompareDate)
+fart_mcap_diff, fart_vol_diff = compare_token_with_benchmark('HistoricalData/FartcoinHist.csv', fartcoinCompareDate, userTokenMcap, userTokenVol)
 # Repeat for other tokens...
 
 print(f"Bonk Market Cap Difference: {bonk_mcap_diff}%")
 print(f"Bonk Volume Difference: {bonk_vol_diff}%")
+print(f"Wif Market Cap Difference: {wif_mcap_diff}%")
+print(f"Wif Volume Difference: {wif_vol_diff}%")
+print(f"Fart Market Cap Difference: {fart_mcap_diff}%")
+print(f"Fart Volume Difference: {fart_vol_diff}%")
 # Print other comparisons...
