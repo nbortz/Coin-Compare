@@ -36,3 +36,7 @@ def get_token_market_cap(mint_address: str) -> float:
         print(f"Error accessing DexScreener API: {e}")
         return None
 
+
+if __name__ == '__main__':
+    addy = '2z1p8xCEjRzpBHjXWrx4tJnz7BFL6z7NnvbCxH7bpump'
+    print(get_token_market_cap(addy))
