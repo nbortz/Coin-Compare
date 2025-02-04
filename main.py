@@ -46,12 +46,16 @@ newMintAdd = input("Please enter a contract address to compare: ")
 
 # Get user token age
 userTokenAge = get_token_age_from_dexscreener(newMintAdd)
+print(userTokenAge)
 # Get the ticker
 userTicker = get_token_ticker_from_mint_dexscreener(newMintAdd)
+print(userTicker)
 # Get user token mcap
 userTokenMcap = get_token_market_cap(newMintAdd)
+print(userTokenMcap)
 # Get user token vol
 userTokenVol = get_token_24h_volume(newMintAdd)
+print(userTokenVol)
 # Get user token Holder to mcap
 #userTokenHolders = getHoldertoMcap.get_holder_count(solRpcUrl, newMintAdd)
 #userTokenHoldertoMcap = userTokenMcap / userTokenHolders

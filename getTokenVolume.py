@@ -17,7 +17,7 @@ def get_token_24h_volume(mint_address: str) -> float:
         # Filter for pairs on Solana
         solana_pairs = [
             pair for pair in data.get('pairs', [])
-            if pair.get('chainId') == 'sol'
+            if pair.get('chainId') == 'solana'
         ]
 
         if not solana_pairs:
