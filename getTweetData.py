@@ -1,7 +1,7 @@
 import requests
 import time
 # Define the API route and key
-api_route = "https://api.tweetbinder.com"
+api_route = "https://api2.tweetbinder.com"
 api_key = "43015a4f-5110-47c4-923d-d8ecfae37b70"
 
 # Define the headers with the authorization token
@@ -61,7 +61,7 @@ query = {
 
 #Change historical to 7-day to change report type
 count_id = create_twitter_count("historical", query)
-time.sleep(7)
+time.sleep(15)
 # If count ID is obtained, view the count data
 if count_id:
     view_count_data(count_id)

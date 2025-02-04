@@ -46,25 +46,3 @@ class Coin:
     def compare_holder_ratio(self, other):
         return self.holder_ratio == other.holder_ratio
 
-# Example usage
-bitcoin = Coin(
-    name="Bitcoin",
-    price=50000,
-    holder_ratio=0.05,
-    total_impressions=1000000,
-    seven_day_sentiment=0.8,
-    time_to_ath=8000
-)
-
-ethereum = Coin(
-    name="Ethereum",
-    price=4000,
-    holder_ratio=0.04,
-    total_impressions=800000,
-    seven_day_sentiment=0.75,
-    time_to_ath=9000
-)
-
-print(bitcoin > ethereum)  # Compare prices
-print(bitcoin.compare_holder_ratio(ethereum))  # Compare holder ratios
-print(bitcoin)
