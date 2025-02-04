@@ -18,7 +18,7 @@ def get_token_market_cap(mint_address: str) -> float:
         # Filter for pairs on Solana
         solana_pairs = [
             pair for pair in data.get('pairs', [])
-            if pair.get('chainId') == 'sol'
+            if pair.get('chainId') == 'solana'
         ]
 
         if not solana_pairs:
@@ -37,3 +37,7 @@ def get_token_market_cap(mint_address: str) -> float:
     except requests.RequestException as e:
         print(f"Error accessing DexScreener API: {e}")
         return None
+
+if __name__ == '__main__':
+    addy = '2z1p8xCEjRzpBHjXWrx4tJnz7BFL6z7NnvbCxH7bpump'
+    print(get_token_market_cap(addy))
