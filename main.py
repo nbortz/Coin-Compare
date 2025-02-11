@@ -82,8 +82,15 @@ def compare_token_with_benchmark(benchmark_file, compare_date, user_mcap, user_v
 # Example usage
 bonk_mcap_diff, bonk_vol_diff = compare_token_with_benchmark('HistoricalData/bonk-tokenHist.csv', bonkCompareDate, userTokenMcap, userTokenVol)
 wif_mcap_diff, wif_vol_diff = compare_token_with_benchmark('HistoricalData/dogwifhatHist.csv', wifCompareDate, userTokenMcap, userTokenVol)
-print(fartcoinCompareDate)
 fart_mcap_diff, fart_vol_diff = compare_token_with_benchmark('HistoricalData/FartcoinHist.csv', fartcoinCompareDate, userTokenMcap, userTokenVol)
+fwog_mcap_diff, fwog_vol_diff = compare_token_with_benchmark('HistoricalData/fwogHist.csv', fwogCompareDate, userTokenMcap, userTokenVol)
+giga_mcap_diff, giga_vol_diff = compare_token_with_benchmark('HistoricalData/GigachadHist.csv', gigaCompareDate, userTokenMcap, userTokenVol)
+goat_mcap_diff, goat_vol_diff = compare_token_with_benchmark('HistoricalData/GoatseusMaximusHist.csv', goatCompareDate, userTokenMcap, userTokenVol)
+chillguy_mcap_diff, chillguy_vol_diff = compare_token_with_benchmark('HistoricalData/JustAChillGuyHist.csv', chillguyCompareDate, userTokenMcap, userTokenVol)
+
+
+
+
 # Repeat for other tokens...
 
 print(f"Bonk Market Cap Difference: {bonk_mcap_diff}%")
