@@ -71,6 +71,7 @@ goatCompareDate = add_age(goatLaunchDate, userTokenAge)
 chillguyCompareDate = add_age(chillguyLaunchDate, userTokenAge)
 
 # Integrate calls to compare functions
+#Comparision for mcap and vol
 def compare_token_with_benchmark(benchmark_file, compare_date, user_mcap, user_vol):
     benchmark_data = get_benchmark_data(benchmark_file, compare_date, ',')
     
