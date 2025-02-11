@@ -4,8 +4,19 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import io
 import base64
+import main
 
 app = Flask(__name__)
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    if request.method == "POST":
+        user_input = request.form["user_value"] # Get input from form
+        # Example for when main is restrucutred to input/output function 
+        bonkCor, wifCor, fartCor, fwogCor, gigaCor, goatCor, chillCor, popcatCor = main(user_input)
+
+        return render_template("result.html", bonkCor=bonkCor, wifCor=wifCor, fartCor=fartCor,
+                                fwogCor=fwogCor, gigaCor=gigaCor, goatCor=goatCor, chillCor=chillCor, popcatCor=popcatCor)
 
 def get_crypto_data(coin_id, days):
     url = f"https://api.coingecko.com/api/v3/coins/{coin_id}/market_chart?vs_currency=usd&days={days}&interval=daily&precision=5"
