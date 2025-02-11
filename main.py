@@ -7,6 +7,7 @@ from tokenAgeAddition import add_age
 from coinClass import Coin
 import requests
 import datetime
+import time
 from compareFunctions import get_benchmark_data, compare_mcap, compare_volume, percent_and_total_diff
 from getTweetData import create_twitter_count, view_count_data
 """
@@ -89,7 +90,14 @@ def get_tweet_impressions(ticker):
         
         }
     }
+    
+    #test count id: "4c30abe4-d62b-427a-a263-e22b020bef3f"
     count_id = create_twitter_count("7-day", query)
+    time.sleep(10)
+    if count_id:
+        count_data = view_count_data(count_id)
+
+    return count_data
     
     
     
@@ -114,4 +122,5 @@ print(f"Wif Market Cap Difference: {wif_mcap_diff}%")
 print(f"Wif Volume Difference: {wif_vol_diff}%")
 print(f"Fart Market Cap Difference: {fart_mcap_diff}%")
 print(f"Fart Volume Difference: {fart_vol_diff}%")
+print(f"Ticker {userTicker} impressions: " + get_tweet_impressions(userTicker))
 # Print other comparisons...

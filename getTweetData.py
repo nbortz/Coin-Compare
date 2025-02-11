@@ -41,26 +41,12 @@ def view_count_data(count_id):
     if response.status_code == 200:
         count_data = response.json()
         total = count_data.get("total")
-        print("Count Data:", count_data)
-        print("/n Total: ", total)
+        return total
     else:
         print(f"Failed to retrieve count data. Status code: {response.status_code}")
         print("Response:", response.text)
+        return(0)
 
 # Get balances
-get_balances()
+#get_balances()
 
-# Create Twitter count for historical type with the specified query which uses Unix time for dates
-query = {
-    "query": {
-        "raw": "$Sol"
-        
-    }
-}
-
-#Change historical to 7-day to change report type
-count_id = create_twitter_count("7-day", query)
-time.sleep(15)
-# If count ID is obtained, view the count data
-if count_id:
-    view_count_data(count_id)
