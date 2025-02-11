@@ -9,6 +9,5 @@ def add_age(benchmarkDate: datetime.date, userTokenAge: int) -> datetime.date:
     :return: A datetime.date object resulting from the addition of 'age_in_days' to 'reference_date'.
     """
     new_date = benchmarkDate + datetime.timedelta(days=userTokenAge)
-    print(new_date.strftime("%Y-%m-%d"))
     return new_date
 
