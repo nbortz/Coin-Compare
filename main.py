@@ -10,6 +10,7 @@ import datetime
 from compareFunctions import get_benchmark_data, compare_mcap, compare_volume, percent_and_total_diff
 from getTweetData import create_twitter_count, view_count_data
 import numpy as np
+from correlationScore import correlation_score
 """
 The main Logic function will intake a mint address from a user. 
 
@@ -103,9 +104,7 @@ fwog_mcap_diff, fwog_vol_diff = compare_token_with_benchmark('HistoricalData/fwo
 giga_mcap_diff, giga_vol_diff = compare_token_with_benchmark('HistoricalData/GigachadHist.csv', gigaCompareDate, userTokenMcap, userTokenVol)
 goat_mcap_diff, goat_vol_diff = compare_token_with_benchmark('HistoricalData/GoatseusMaximusHist.csv', goatCompareDate, userTokenMcap, userTokenVol)
 chillguy_mcap_diff, chillguy_vol_diff = compare_token_with_benchmark('HistoricalData/JustAChillGuyHist.csv', chillguyCompareDate, userTokenMcap, userTokenVol)
-
-
-# Setup correlation logic
+# Define compare token data as lists
 
 
 # Repeat for other tokens...
