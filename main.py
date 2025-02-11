@@ -8,7 +8,7 @@ from coinClass import Coin
 import requests
 import datetime
 from compareFunctions import get_benchmark_data, compare_mcap, compare_volume, percent_and_total_diff
-
+from getTweetData import create_twitter_count, view_count_data
 """
 The main Logic function will intake a mint address from a user. 
 
@@ -79,6 +79,20 @@ def compare_token_with_benchmark(benchmark_file, compare_date, user_mcap, user_v
     vol_diff = compare_volume(benchmark_data, user_vol)
     
     return mcap_diff, vol_diff
+
+def get_tweet_impressions(ticker):
+    cashtag = "$" + ticker
+
+    query = {
+    "query": {
+        "raw": "{cashtag}"
+        
+        }
+    }
+    count_id = create_twitter_count("7-day", query)
+    
+    
+    
 
 # Example usage
 bonk_mcap_diff, bonk_vol_diff = compare_token_with_benchmark('HistoricalData/bonk-tokenHist.csv', bonkCompareDate, userTokenMcap, userTokenVol)

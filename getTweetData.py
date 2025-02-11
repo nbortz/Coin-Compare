@@ -1,7 +1,7 @@
 import requests
 import time
 # Define the API route and key
-api_route = "https://api2.tweetbinder.com"
+api_route = "https://api.tweetbinder.com"
 api_key = "43015a4f-5110-47c4-923d-d8ecfae37b70"
 
 # Define the headers with the authorization token
@@ -11,7 +11,7 @@ headers = {
 
 # Function to get balances
 def get_balances():
-    url = f"{api_route}/me/balances"
+    url = f"{api_route}/me/balances?apiKey={api_key}"
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         balances = response.json()
@@ -59,7 +59,7 @@ query = {
 }
 
 #Change historical to 7-day to change report type
-count_id = create_twitter_count("historical", query)
+count_id = create_twitter_count("7-day", query)
 time.sleep(15)
 # If count ID is obtained, view the count data
 if count_id:
