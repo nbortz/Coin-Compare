@@ -11,7 +11,6 @@ import time
 from compareFunctions import get_benchmark_data, compare_mcap, compare_volume, percent_and_total_diff
 from getTweetData import create_twitter_count, view_count_data
 import numpy as np
-from correlationScore import correlation_score
 """
 The main Logic function will intake a mint address from a user. 
 
