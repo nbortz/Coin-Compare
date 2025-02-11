@@ -53,12 +53,10 @@
         <h5 class="text-center">Input a Contract/Mint Address for a coin you're interested in below</h5>
         <br>
         <br>
-        <form id="plot-form">
-            <div class="form-group">
-                <label for="Contract/Mint Address">Contract/Mint Address</label>
-                <input type="text" class="form-control" id="coin_id" name="coin_id" required>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Plot</button>
+        <form action="/" method="post">
+            <label for="user_value">Enter a Solana contract <address></address>:</label>
+            <input type="text" id="user_value" name="user_value">
+            <button type="submit">Submit</button>
         </form>
         <div class="plot text-center">
             <img id="plot-img" src="" alt="Plot will be displayed here" class="img-fluid">
