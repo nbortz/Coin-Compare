@@ -13,6 +13,7 @@ def index():
     return render_template('index.html')
 
 @app.route("/", methods=["GET", "POST"])
+
 def index():
     if request.method == "POST":
         user_input = request.form["user_value"] # Get input from form
