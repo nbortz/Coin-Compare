@@ -18,10 +18,12 @@ def index():
     if request.method == "POST":
         user_input = request.form["user_value"] # Get input from form
         # Example for when main is restrucutred to input/output function 
-        bonkCor, wifCor, fartCor, fwogCor, gigaCor, goatCor, chillCor, popcatCor = main(user_input)
+        # TODO Main must also return tweet counts for user token and 1, 2, or 3 month counts for 
+        bonkCor, wifCor, fartCor, fwogCor, gigaCor, goatCor, chillCor, popcatCor, mcapvolArray, holdertoMcapRatios, twitterCounts,  = main(user_input)
 
         return render_template("result.html", bonkCor=bonkCor, wifCor=wifCor, fartCor=fartCor,
-                                fwogCor=fwogCor, gigaCor=gigaCor, goatCor=goatCor, chillCor=chillCor, popcatCor=popcatCor)
+                                fwogCor=fwogCor, gigaCor=gigaCor, goatCor=goatCor, chillCor=chillCor, popcatCor=popcatCor,
+                                mcapvolArray=mcapvolArray, holdertoMcapRatios=holdertoMcapRatios, twitterCounts=twitterCounts)
 
 @app.route('/about')
 def about():

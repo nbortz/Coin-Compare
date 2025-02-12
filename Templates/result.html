@@ -23,9 +23,10 @@
             color: black;
             padding: 20px;
             border-radius: 15px; /* Rounded corners */
-            width: 200px;
-            font-size: 18px;
+            width: 250px;
+            font-size: 16px;
             font-weight: bold;
+            text-align: left;
         }
         .back-button {
             display: inline-block;
@@ -45,16 +46,71 @@
 <body>
     <h1>Results</h1>
     <div class="container">
-        <div class="result-box">Bonk : {{ bonkCor }}</div>
-        <div class="result-box">Wif : {{ wifCor }}</div>
-        <div class="result-box">Fartcoin : {{ fartCor }}</div>
-        <div class="result-box">Fwog : {{ fwogCor }}</div>
-        <div class="result-box">Giga : {{ gigaCor }}</div>
-        <div class="result-box">Goatseus Maximus : {{ goatCor }}</div>
-        <div class="result-box">Chill Guy : {{ chillCor }}</div>
-        <div class="result-box">Popcat : {{ popcatCor }}</div>
+        <div class="result-box">
+            <strong>Bonk:</strong><br>
+            Correlation: {{ bonkCor }}<br>
+            MCAP Diff: {{ mcapvolArray[0][0] }}<br>
+            VOL Diff: {{ mcapvolArray[0][1] }}<br>
+            MCAP: {{ mcapvolArray[0][2] }}<br>
+            VOL: {{ mcapvolArray[0][3] }}
+        </div>
+        <div class="result-box">
+            <strong>Wif:</strong><br>
+            Correlation: {{ wifCor }}<br>
+            MCAP Diff: {{ mcapvolArray[1][0] }}<br>
+            VOL Diff: {{ mcapvolArray[1][1] }}<br>
+            MCAP: {{ mcapvolArray[1][2] }}<br>
+            VOL: {{ mcapvolArray[1][3] }}
+        </div>
+        <div class="result-box">
+            <strong>Fartcoin:</strong><br>
+            Correlation: {{ fartCor }}<br>
+            MCAP Diff: {{ mcapvolArray[2][0] }}<br>
+            VOL Diff: {{ mcapvolArray[2][1] }}<br>
+            MCAP: {{ mcapvolArray[2][2] }}<br>
+            VOL: {{ mcapvolArray[2][3] }}
+        </div>
+        <div class="result-box">
+            <strong>Fwog:</strong><br>
+            Correlation: {{ fwogCor }}<br>
+            MCAP Diff: {{ mcapvolArray[3][0] }}<br>
+            VOL Diff: {{ mcapvolArray[3][1] }}<br>
+            MCAP: {{ mcapvolArray[3][2] }}<br>
+            VOL: {{ mcapvolArray[3][3] }}
+        </div>
+        <div class="result-box">
+            <strong>Giga:</strong><br>
+            Correlation: {{ gigaCor }}<br>
+            MCAP Diff: {{ mcapvolArray[4][0] }}<br>
+            VOL Diff: {{ mcapvolArray[4][1] }}<br>
+            MCAP: {{ mcapvolArray[4][2] }}<br>
+            VOL: {{ mcapvolArray[4][3] }}
+        </div>
+        <div class="result-box">
+            <strong>Goatseus Maximus:</strong><br>
+            Correlation: {{ goatCor }}<br>
+            MCAP Diff: {{ mcapvolArray[5][0] }}<br>
+            VOL Diff: {{ mcapvolArray[5][1] }}<br>
+            MCAP: {{ mcapvolArray[5][2] }}<br>
+            VOL: {{ mcapvolArray[5][3] }}
+        </div>
+        <div class="result-box">
+            <strong>Chill Guy:</strong><br>
+            Correlation: {{ chillCor }}<br>
+            MCAP Diff: {{ mcapvolArray[6][0] }}<br>
+            VOL Diff: {{ mcapvolArray[6][1] }}<br>
+            MCAP: {{ mcapvolArray[6][2] }}<br>
+            VOL: {{ mcapvolArray[6][3] }}
+        </div>
+        <div class="result-box">
+            <strong>Popcat:</strong><br>
+            Correlation: {{ popcatCor }}<br>
+            MCAP Diff: {{ mcapvolArray[7][0] }}<br>
+            VOL Diff: {{ mcapvolArray[7][1] }}<br>
+            MCAP: {{ mcapvolArray[7][2] }}<br>
+            VOL: {{ mcapvolArray[7][3] }}
+        </div>
     </div>
-
     <a href="/" class="back-button">Go Back</a>
 </body>
 </html>
