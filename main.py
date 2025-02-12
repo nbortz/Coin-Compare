@@ -60,7 +60,7 @@ userTokenVol = get_token_24h_volume(newMintAdd)
 #userTokenHolders = getHoldertoMcap.get_holder_count(solRpcUrl, newMintAdd)
 #userTokenHoldertoMcap = userTokenMcap / userTokenHolders
 
-# TODO: Get user token impression count (lifetime)
+# Get user token impression count (lifetime)
 countId = getTweetData.create_twitter_count('historical', userTicker)
 userImpressions = getTweetData.view_count_data(countId)
 
@@ -74,7 +74,7 @@ goatCompareDate = add_age(goatLaunchDate, userTokenAge)
 chillguyCompareDate = add_age(chillguyLaunchDate, userTokenAge)
 
 # Integrate calls to compare functions
-#Comparision for mcap and vol
+# Comparision for mcap and vol
 def compare_token_with_benchmark(benchmark_file, compare_date, user_mcap, user_vol):
     benchmark_data = get_benchmark_data(benchmark_file, compare_date, ',')
     
@@ -114,8 +114,9 @@ goat_mcap_diff, goat_vol_diff = compare_token_with_benchmark('HistoricalData/Goa
 chillguy_mcap_diff, chillguy_vol_diff = compare_token_with_benchmark('HistoricalData/JustAChillGuyHist.csv', chillguyCompareDate, userTokenMcap, userTokenVol)
 # Define compare token data as lists
 
-
 # Repeat for other tokens...
+
+
 
 print(f"Bonk Market Cap Difference: {bonk_mcap_diff}%")
 print(f"Bonk Volume Difference: {bonk_vol_diff}%")
