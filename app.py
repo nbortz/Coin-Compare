@@ -12,8 +12,7 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route("/result", methods=["POST"])
-
+@app.route("/result", methods=["POST", "GET"])
 def result():
     if request.method == "POST":
         user_input = request.form["user_value"] # Get input from form
@@ -24,7 +23,6 @@ def result():
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
