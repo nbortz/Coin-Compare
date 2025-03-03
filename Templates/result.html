@@ -1,116 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Correlation Scores</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 50px;
-        }
-        .result-box {
-            background-color: #32CD32; /* Light lime green */
-            color: black;
-            padding: 20px;
-            border-radius: 15px; /* Rounded corners */
-            width: 250px;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: left;
-        }
-        .back-button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 10px 20px;
-            background-color: white;
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 10px;
-        }
-        .back-button:hover {
-            background-color: gray;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Correlation Scores</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 50px;
+    }
+    .result-box {
+      background-color: #32CD32; /* Light lime green */
+      color: black;
+      padding: 20px;
+      border-radius: 15px; /* Rounded corners */
+      width: 250px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: left;
+    }
+    .back-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: white;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 10px;
+    }
+    .back-button:hover {
+      background-color: gray;
+    }
+  </style>
 </head>
 <body>
-    <h1>Results</h1>
-    <div class="container">
-        <div class="result-box">
-            <strong>Bonk:</strong><br>
-            Correlation: {{ bonkCor }}<br>
-            MCAP Diff: {{ mcapvolArray[0][0] }}<br>
-            VOL Diff: {{ mcapvolArray[0][1] }}<br>
-            MCAP: {{ mcapvolArray[0][2] }}<br>
-            VOL: {{ mcapvolArray[0][3] }}
-        </div>
-        <div class="result-box">
-            <strong>Wif:</strong><br>
-            Correlation: {{ wifCor }}<br>
-            MCAP Diff: {{ mcapvolArray[1][0] }}<br>
-            VOL Diff: {{ mcapvolArray[1][1] }}<br>
-            MCAP: {{ mcapvolArray[1][2] }}<br>
-            VOL: {{ mcapvolArray[1][3] }}
-        </div>
-        <div class="result-box">
-            <strong>Fartcoin:</strong><br>
-            Correlation: {{ fartCor }}<br>
-            MCAP Diff: {{ mcapvolArray[2][0] }}<br>
-            VOL Diff: {{ mcapvolArray[2][1] }}<br>
-            MCAP: {{ mcapvolArray[2][2] }}<br>
-            VOL: {{ mcapvolArray[2][3] }}
-        </div>
-        <div class="result-box">
-            <strong>Fwog:</strong><br>
-            Correlation: {{ fwogCor }}<br>
-            MCAP Diff: {{ mcapvolArray[3][0] }}<br>
-            VOL Diff: {{ mcapvolArray[3][1] }}<br>
-            MCAP: {{ mcapvolArray[3][2] }}<br>
-            VOL: {{ mcapvolArray[3][3] }}
-        </div>
-        <div class="result-box">
-            <strong>Giga:</strong><br>
-            Correlation: {{ gigaCor }}<br>
-            MCAP Diff: {{ mcapvolArray[4][0] }}<br>
-            VOL Diff: {{ mcapvolArray[4][1] }}<br>
-            MCAP: {{ mcapvolArray[4][2] }}<br>
-            VOL: {{ mcapvolArray[4][3] }}
-        </div>
-        <div class="result-box">
-            <strong>Goatseus Maximus:</strong><br>
-            Correlation: {{ goatCor }}<br>
-            MCAP Diff: {{ mcapvolArray[5][0] }}<br>
-            VOL Diff: {{ mcapvolArray[5][1] }}<br>
-            MCAP: {{ mcapvolArray[5][2] }}<br>
-            VOL: {{ mcapvolArray[5][3] }}
-        </div>
-        <div class="result-box">
-            <strong>Chill Guy:</strong><br>
-            Correlation: {{ chillCor }}<br>
-            MCAP Diff: {{ mcapvolArray[6][0] }}<br>
-            VOL Diff: {{ mcapvolArray[6][1] }}<br>
-            MCAP: {{ mcapvolArray[6][2] }}<br>
-            VOL: {{ mcapvolArray[6][3] }}
-        </div>
-        <div class="result-box">
-            <strong>Popcat:</strong><br>
-            Correlation: {{ popcatCor }}<br>
-            MCAP Diff: {{ mcapvolArray[7][0] }}<br>
-            VOL Diff: {{ mcapvolArray[7][1] }}<br>
-            MCAP: {{ mcapvolArray[7][2] }}<br>
-            VOL: {{ mcapvolArray[7][3] }}
-        </div>
-    </div>
-    <a href="/" class="back-button">Go Back</a>
+  <h1>Results</h1>
+  <div class="container">
+    {% set coin_names = ["Bonk", "Wif", "Fartcoin", "Fwog", "Giga", "Goatseus Maximus", "Chill Guy", "Popcat"] %}
+    {% for i, coin_data in output_array|enumerate %}
+      <div class="result-box">
+        <strong>{{ coin_names[i] }}:</strong><br>
+        {% if coin_data|length == 5 %}
+          Correlation: {{ coin_data[4] }}<br>
+          MCAP Diff: {{ coin_data[0] }}<br>
+          VOL Diff: {{ coin_data[1] }}<br>
+          MCAP: {{ coin_data[2] }}<br>
+          VOL: {{ coin_data[3] }}
+        {% else %}
+          User Impressions: {{ coin_data[0] }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  <a href="/" class="back-button">Go Back</a>
 </body>
 </html>
