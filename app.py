@@ -8,8 +8,8 @@ import main
 
 app = Flask(__name__)
 
-@app.route('/index')
-def index():
+@app.route('/', methods = ["GET"])
+def home():
     return render_template('index.html')
 
 @app.route("/result", methods=["POST"])
@@ -18,7 +18,7 @@ def result():
     if request.method == "POST":
         user_input = request.form["user_value"] # Get input from form
         # Example for when main is restrucutred to input/output function 
-        output_array = main(user_input)
+        output_array = main.main(user_input)
         return render_template("result.html", output_array=output_array)
 
 @app.route('/about')
