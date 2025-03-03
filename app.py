@@ -8,18 +8,21 @@ import main
 
 app = Flask(__name__)
 
-@app.route('/index')
+@app.route('/Index')
 def index():
     return render_template('index.html')
 
-@app.route("/", methods=["GET", "POST"])
-
+@app.route("/result", methods=["POST", "GET"])
 def result():
     if request.method == "POST":
         user_input = request.form["user_value"] # Get input from form
         # Example for when main is restrucutred to input/output function 
-        output_array = main(user_input)
-        return render_template("result.html", output_array=output_array)
+        # TODO Main must also return tweet counts for user token and 1, 2, or 3 month counts for 
+        bonkCor, wifCor, fartCor, fwogCor, gigaCor, goatCor, chillCor, popcatCor, mcapvolArray, holdertoMcapRatios, twitterCounts  = main(user_input)
+
+        return render_template("result.html", bonkCor=bonkCor, wifCor=wifCor, fartCor=fartCor,
+                                fwogCor=fwogCor, gigaCor=gigaCor, goatCor=goatCor, chillCor=chillCor, popcatCor=popcatCor,
+                                mcapvolArray=mcapvolArray, holdertoMcapRatios=holdertoMcapRatios, twitterCounts=twitterCounts)
 
 @app.route('/about')
 def about():
