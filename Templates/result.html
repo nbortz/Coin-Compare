@@ -47,9 +47,9 @@
   <h1>Results</h1>
   <div class="container">
     {% set coin_names = ["Bonk", "Wif", "Fartcoin", "Fwog", "Giga", "Goatseus Maximus", "Chill Guy", "Popcat"] %}
-    {% for i, coin_data in output_array|enumerate %}
+    {% for coin_data in output_array %}
       <div class="result-box">
-        <strong>{{ coin_names[i] }}:</strong><br>
+        <strong>{{ coin_names[loop.index0] }}:</strong><br>
         {% if coin_data|length == 5 %}
           Correlation: {{ coin_data[4] }}<br>
           MCAP Diff: {{ coin_data[0] }}<br>
