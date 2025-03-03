@@ -10,6 +10,7 @@ import datetime
 import time
 from compareFunctions import get_benchmark_data, compare_mcap, compare_volume, percent_and_total_diff
 from getTweetData import create_twitter_count, view_count_data
+import math
 """
 The main Logic function will intake a mint address from a user. 
 
@@ -82,10 +83,22 @@ def main(mintAdd):
     userImpressions = get_tweet_impressions(userTicker)
 
 
-    output_array = [[bonk_mcap_diff, bonk_vol_diff, bonk_mcap, bonk_vol],[wif_mcap_diff, wif_vol_diff, wif_mcap, wif_vol],
-                    [fart_mcap_diff, fart_vol_diff, fart_mcap, fart_vol],[fwog_mcap_diff, fwog_vol_diff, fwog_mcap, fwog_vol],
-                    [giga_mcap_diff, giga_vol_diff, giga_mcap, giga_vol], [goat_mcap_diff, goat_vol_diff, goat_mcap, goat_vol],
-                    [chillguy_mcap_diff, chillguy_vol_diff, chillguy_mcap, chillguy_vol], [userImpressions]]
+    #Calculate scores
+    #TODO:revisit score calc
+    bonk_score = (bonk_mcap_diff + bonk_vol_diff + (math.sqrt(userImpressions)/100))/3
+    wif_score = (wif_mcap_diff + wif_vol_diff + (math.sqrt(userImpressions)/100))/3
+    fart_score = (fart_mcap_diff + fart_vol_diff + (math.sqrt(userImpressions)/100))/3
+    fwog_score = (fwog_mcap_diff + fwog_vol_diff + (math.sqrt(userImpressions)/100))/3
+    giga_score = (giga_mcap_diff + giga_vol_diff + (math.sqrt(userImpressions)/100))/3
+    goat_score = (goat_mcap_diff + goat_vol_diff + (math.sqrt(userImpressions)/100))/3
+    chillguy_score = (chillguy_mcap_diff + chillguy_vol_diff + (math.sqrt(userImpressions)/100))/3
+
+    
+
+    output_array = [[bonk_mcap_diff, bonk_vol_diff, bonk_mcap, bonk_vol, bonk_score],[wif_mcap_diff, wif_vol_diff, wif_mcap, wif_vol, wif_score],
+                    [fart_mcap_diff, fart_vol_diff, fart_mcap, fart_vol, fart_score],[fwog_mcap_diff, fwog_vol_diff, fwog_mcap, fwog_vol, fwog_score],
+                    [giga_mcap_diff, giga_vol_diff, giga_mcap, giga_vol, giga_score], [goat_mcap_diff, goat_vol_diff, goat_mcap, goat_vol, goat_score],
+                    [chillguy_mcap_diff, chillguy_vol_diff, chillguy_mcap, chillguy_vol, chillguy_score], [userImpressions]]
                     
                     
 
