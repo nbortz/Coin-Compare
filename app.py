@@ -14,7 +14,7 @@ def index():
 
 @app.route("/", methods=["GET", "POST"])
 
-def index():
+def result():
     if request.method == "POST":
         user_input = request.form["user_value"] # Get input from form
         # Example for when main is restrucutred to input/output function 
