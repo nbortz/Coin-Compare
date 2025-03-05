@@ -1,5 +1,62 @@
-<form action="/result" method="post">
-    <label for="user_value">Enter a Solana contract <address></address>:</label>
-    <input type="text" id="user_value" name="user_value">
-    <button type="submit">Submit</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CoinPair</title>
+  <style>
+    body {
+      background-color: #000;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    h1 {
+      color: #00FF00;
+      font-size: 48px;
+      margin: 30px 0;
+    }
+    .form-container {
+      background-color: #00FF00;
+      width: 400px;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 0 auto;
+      color: #000;
+      box-sizing: border-box;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>CoinPair</h1>
+  <div class="form-container">
+    <form action="/result" method="post">
+      <label for="user_value">Enter a Solana contract <address></address>:</label>
+      <input type="text" id="user_value" name="user_value">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
