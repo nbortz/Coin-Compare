@@ -3,27 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>CoinPair</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <style>
     body {
       background-color: #000;
-      font-family: Arial, sans-serif;
+      font-family: 'Open Sans', sans-serif;
       margin: 0;
       padding: 0;
       text-align: center;
     }
     h1 {
       color: #00FF00;
-      font-size: 48px;
+      font-size: 60px; /* increased by 25% */
       margin: 30px 0;
     }
+    /* Outer container is larger */
     .form-container {
       background-color: #00FF00;
-      width: 400px;
+      width: 600px;
       padding: 20px;
       border-radius: 15px;
       margin: 0 auto;
       color: #000;
       box-sizing: border-box;
+    }
+    /* Inner wrapper remains the same width as before */
+    .form-inner {
+      width: 400px;
+      margin: 0 auto;
     }
     label {
       display: block;
@@ -31,7 +38,7 @@
       font-weight: bold;
     }
     input[type="text"] {
-      width: 100%;
+      width: 100%; /* occupies 100% of the 400px inner wrapper */
       padding: 10px;
       font-size: 16px;
       margin-bottom: 20px;
@@ -52,11 +59,13 @@
 <body>
   <h1>CoinPair</h1>
   <div class="form-container">
-    <form action="/result" method="post">
-      <label for="user_value">Enter a Solana contract <address></address>:</label>
-      <input type="text" id="user_value" name="user_value">
-      <button type="submit">Submit</button>
-    </form>
+    <div class="form-inner">
+      <form action="/result" method="post">
+        <label for="user_value">Enter a Solana contract <address></address>:</label>
+        <input type="text" id="user_value" name="user_value">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   </div>
 </body>
 </html>
