@@ -5,31 +5,42 @@
   <title>CoinPair</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
     body {
       background-color: #000;
       font-family: 'Open Sans', sans-serif;
-      margin: 0;
-      padding: 0;
+    }
+    header {
       text-align: center;
+      padding: 30px 0;
     }
-    h1 {
+    header h1 {
       color: #00FF00;
-      font-size: 60px; /* increased by 25% */
-      margin: 30px 0;
+      font-size: 60px;
+      margin: 0;
     }
-    /* Outer container is larger */
+    /* Center main area (form container) vertically and horizontally */
+    .main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 100px); /* Adjust height based on header */
+    }
     .form-container {
       background-color: #00FF00;
-      width: 600px;
+      width: 1200px; /* stretched container */
       padding: 20px;
       border-radius: 15px;
-      margin: 0 auto;
-      color: #000;
       box-sizing: border-box;
+      color: #000;
     }
-    /* Inner wrapper remains the same width as before */
+    /* Increase inner width by 50% (from 400px to 600px) for a larger input field */
     .form-inner {
-      width: 400px;
+      width: 600px;
       margin: 0 auto;
     }
     label {
@@ -38,7 +49,7 @@
       font-weight: bold;
     }
     input[type="text"] {
-      width: 100%; /* occupies 100% of the 400px inner wrapper */
+      width: 100%;
       padding: 10px;
       font-size: 16px;
       margin-bottom: 20px;
@@ -48,6 +59,7 @@
       background-color: #000;
       color: #fff;
       border: none;
+      border-radius: 8px; /* rounded edges for the submit button */
       padding: 10px 20px;
       font-size: 16px;
       cursor: pointer;
@@ -57,14 +69,18 @@
   </style>
 </head>
 <body>
-  <h1>CoinPair</h1>
-  <div class="form-container">
-    <div class="form-inner">
-      <form action="/result" method="post">
-        <label for="user_value">Enter a Solana contract <address></address>:</label>
-        <input type="text" id="user_value" name="user_value">
-        <button type="submit">Submit</button>
-      </form>
+  <header>
+    <h1>CoinPair</h1>
+  </header>
+  <div class="main">
+    <div class="form-container">
+      <div class="form-inner">
+        <form action="/result" method="post">
+          <label for="user_value">Enter a Solana contract <address></address>:</label>
+          <input type="text" id="user_value" name="user_value">
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
 </body>
