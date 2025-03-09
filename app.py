@@ -7,7 +7,7 @@ import base64
 import main
 
 app = Flask(__name__)
-
+# 
 @app.route('/', methods = ["GET"])
 def home():
     return render_template('index.html')
@@ -18,6 +18,7 @@ def result():
         user_input = request.form["user_value"] # Get input from form
         # Example for when main is restrucutred to input/output function 
         output_array = main.main(user_input)
+        print(output_array)
         return render_template("result.html", output_array=output_array)
 
 @app.route('/about')
