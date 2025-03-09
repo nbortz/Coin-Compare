@@ -41,10 +41,22 @@
     .back-button:hover {
       background-color: gray;
     }
+    .debug-table {
+      margin-top: 20px;
+      background-color: white;
+      color: black;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
   <h1>Results</h1>
+  <div class="debug-table">
+    <h2>Debugging Output</h2>
+    <pre>{{ output_array }}</pre>
+  </div>
   <div class="container">
     {% set coin_names = ["Bonk", "Wif", "Fartcoin", "Fwog", "Giga", "Goatseus Maximus", "Chill Guy", "Popcat"] %}
     {% for coin_data in output_array %}
@@ -65,5 +77,3 @@
   <a href="/" class="back-button">Go Back</a>
 </body>
 </html>
- 
- 
