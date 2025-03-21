@@ -62,13 +62,13 @@
       <div class="result-box">
         <strong>{{ coin_names[loop.index0] }}:</strong><br>
         {% if coin_data|length == 5 %}
-          Correlation: {{ coin_data[4]|round(3) }}<br>
-          MCAP Diff: {{ coin_data[0]|round(3) }}<br>
-          VOL Diff: {{ coin_data[1]|round(3) }}<br>
-          MCAP: {{ coin_data[2]|round(3) }}<br>
-          VOL: {{ coin_data[3]|round(3) }}
+          Correlation: {{ "{:,.2f}".format(coin_data[4]) }}<br>
+          MCAP Diff: {{ "{:,.2f}".format(coin_data[0]) }}%<br>
+          VOL Diff: {{ "{:,.2f}".format(coin_data[1]) }}%<br>
+          MCAP: {{ "{:,.2f}".format(coin_data[2]) }}<br>
+          VOL: {{ "{:,.2f}".format(coin_data[3]) }}
         {% else %}
-          User Impressions: {{ coin_data[0]|round(3) }}
+          User Impressions: {{ "{:,.2f}".format(coin_data[0]) }}
         {% endif %}
       </div>
     {% endfor %}
