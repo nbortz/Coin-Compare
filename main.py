@@ -125,8 +125,15 @@ def main(mintAdd):
 def compare_token_with_benchmark(benchmark_file, compare_date, user_mcap, user_vol, userTokenAge):
     benchmark_data = get_benchmark_data(benchmark_file, compare_date, ',')
     print(benchmark_data)
-    mcap = (benchmark_data['marketCap'].iat[-(userTokenAge)])
-    vol = (benchmark_data['volume'].iat[-(userTokenAge)])
+    
+    try:
+        mcap = benchmark_data['marketCap'].iat[-(userTokenAge)]
+        vol = benchmark_data['volume'].iat[-(userTokenAge)]
+    except IndexError:
+        # Jump to the latest entry in the data if index is out of bounds
+        mcap = benchmark_data['marketCap'].iat[-1]
+        vol = benchmark_data['volume'].iat[-1]
+        
     mcap_diff = compare_mcap(benchmark_data, user_mcap)
     vol_diff = compare_volume(benchmark_data, user_vol)
     
