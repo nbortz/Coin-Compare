@@ -162,5 +162,4 @@ def test_main():
     # Print the result
     print("Test Result:", result)
 
-# Run the test case
-test_main()
+
