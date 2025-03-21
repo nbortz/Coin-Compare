@@ -9,26 +9,39 @@
       height: 100%;
       margin: 0;
       padding: 0;
-    }
-    body {
-      background-color: #000;
       font-family: 'Open Sans', sans-serif;
+      background-color: #000;
     }
+    /* Menu Container at the top left */
+    .menu-container {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    .menu-container a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      margin-right: 20px;
+    }
+    .menu-container a:hover {
+      text-decoration: underline;
+    }
+    /* Header with image */
     header {
       text-align: center;
       padding: 30px 0;
     }
-    header h1 {
-      color: #00FF00;
-      font-size: 60px;
-      margin: 0;
+    header img {
+      max-width: 100%;
+      height: auto;
     }
     /* Center main area (form container) vertically and horizontally */
     .main {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: calc(100vh - 100px); /* Adjust height based on header */
+      height: calc(100vh - 150px); /* Adjusted for header and spacing */
     }
     .form-container {
       background-color: #00FF00;
@@ -69,9 +82,19 @@
   </style>
 </head>
 <body>
+  <!-- Top left menu container -->
+  <div class="menu-container">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="https://coinpair.gitbook.io/coinpair-docs/">Docs</a>
+  </div>
+  
+  <!-- Header with logo image -->
   <header>
-    <h1>CoinPair</h1>
+    <img src="coinpairlogo.png" alt="CoinPair Logo">
   </header>
+  
+  <!-- Main form area -->
   <div class="main">
     <div class="form-container">
       <div class="form-inner">
