@@ -49,6 +49,7 @@ def main(mintAdd):
 
     # Get user token age
     userTokenAge = get_token_age_from_dexscreener(newMintAdd)
+    print(userTokenAge)
 
     # Get the ticker
     userTicker = get_token_ticker_from_mint_dexscreener(newMintAdd)
@@ -67,17 +68,18 @@ def main(mintAdd):
     fartcoinCompareDate = add_age(fartcoinLaunchDate, userTokenAge)
     fwogCompareDate = add_age(fwogLaunchDate, userTokenAge)
     gigaCompareDate = add_age(gigaLaunchDate, userTokenAge)
+    print(gigaCompareDate)
     goatCompareDate = add_age(goatLaunchDate, userTokenAge)
     chillguyCompareDate = add_age(chillguyLaunchDate, userTokenAge)
 
     # Integrate calls to compare functions
-    bonk_mcap_diff, bonk_vol_diff, bonk_mcap, bonk_vol = compare_token_with_benchmark('HistoricalData/bonk-tokenHist.csv', bonkCompareDate, userTokenMcap, userTokenVol)
-    wif_mcap_diff, wif_vol_diff, wif_mcap, wif_vol = compare_token_with_benchmark('HistoricalData/dogwifhatHist.csv', wifCompareDate, userTokenMcap, userTokenVol)
-    fart_mcap_diff, fart_vol_diff, fart_mcap, fart_vol = compare_token_with_benchmark('HistoricalData/FartcoinHist.csv', fartcoinCompareDate, userTokenMcap, userTokenVol)
-    fwog_mcap_diff, fwog_vol_diff, fwog_mcap, fwog_vol = compare_token_with_benchmark('HistoricalData/fwogHist.csv', fwogCompareDate, userTokenMcap, userTokenVol)
-    giga_mcap_diff, giga_vol_diff, giga_mcap, giga_vol = compare_token_with_benchmark('HistoricalData/GigachadHist.csv', gigaCompareDate, userTokenMcap, userTokenVol)
-    goat_mcap_diff, goat_vol_diff, goat_mcap, goat_vol = compare_token_with_benchmark('HistoricalData/GoatseusMaximusHist.csv', goatCompareDate, userTokenMcap, userTokenVol)
-    chillguy_mcap_diff, chillguy_vol_diff, chillguy_mcap, chillguy_vol = compare_token_with_benchmark('HistoricalData/JustAChillGuyHist.csv', chillguyCompareDate, userTokenMcap, userTokenVol)
+    bonk_mcap_diff, bonk_vol_diff, bonk_mcap, bonk_vol = compare_token_with_benchmark('HistoricalData/bonk-tokenHist.csv', bonkCompareDate, userTokenMcap, userTokenVol, userTokenAge)
+    wif_mcap_diff, wif_vol_diff, wif_mcap, wif_vol = compare_token_with_benchmark('HistoricalData/dogwifhatHist.csv', wifCompareDate, userTokenMcap, userTokenVol, userTokenAge)
+    fart_mcap_diff, fart_vol_diff, fart_mcap, fart_vol = compare_token_with_benchmark('HistoricalData/FartcoinHist.csv', fartcoinCompareDate, userTokenMcap, userTokenVol, userTokenAge)
+    fwog_mcap_diff, fwog_vol_diff, fwog_mcap, fwog_vol = compare_token_with_benchmark('HistoricalData/fwogHist.csv', fwogCompareDate, userTokenMcap, userTokenVol, userTokenAge)
+    giga_mcap_diff, giga_vol_diff, giga_mcap, giga_vol = compare_token_with_benchmark('HistoricalData/GigachadHist.csv', gigaCompareDate, userTokenMcap, userTokenVol, userTokenAge)
+    goat_mcap_diff, goat_vol_diff, goat_mcap, goat_vol = compare_token_with_benchmark('HistoricalData/GoatseusMaximusHist.csv', goatCompareDate, userTokenMcap, userTokenVol, userTokenAge)
+    chillguy_mcap_diff, chillguy_vol_diff, chillguy_mcap, chillguy_vol = compare_token_with_benchmark('HistoricalData/JustAChillGuyHist.csv', chillguyCompareDate, userTokenMcap, userTokenVol, userTokenAge)
 
     #Get twitter impressions
     userImpressions = get_tweet_impressions(userTicker)
@@ -120,10 +122,11 @@ def main(mintAdd):
 
 
 #Comparision for mcap and vol
-def compare_token_with_benchmark(benchmark_file, compare_date, user_mcap, user_vol):
+def compare_token_with_benchmark(benchmark_file, compare_date, user_mcap, user_vol, userTokenAge):
     benchmark_data = get_benchmark_data(benchmark_file, compare_date, ',')
-    mcap = (benchmark_data['marketCap'].iat[-1])
-    vol = (benchmark_data['volume'].iat[-1])
+    print(benchmark_data)
+    mcap = (benchmark_data['marketCap'].iat[-(userTokenAge)])
+    vol = (benchmark_data['volume'].iat[-(userTokenAge)])
     mcap_diff = compare_mcap(benchmark_data, user_mcap)
     vol_diff = compare_volume(benchmark_data, user_vol)
     
@@ -148,4 +151,15 @@ def get_tweet_impressions(ticker):
         count_data = view_count_data(count_id)
 
     return count_data
-    
+
+def test_main():
+    # Sample mint address for testing
+    sample_mint_address = '5LJMJyR8MtAkbtpf8kFUV7S9oFG3xaGDdcnFxYt9pump'
+
+    # Call the main function with the sample mint address
+    result = main(sample_mint_address)
+
+    # Print the result
+    print("Test Result:", result)
+
+
