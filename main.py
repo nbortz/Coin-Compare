@@ -49,6 +49,7 @@ def main(mintAdd):
 
     # Get user token age
     userTokenAge = get_token_age_from_dexscreener(newMintAdd)
+    print(userTokenAge)
 
     # Get the ticker
     userTicker = get_token_ticker_from_mint_dexscreener(newMintAdd)
@@ -67,6 +68,7 @@ def main(mintAdd):
     fartcoinCompareDate = add_age(fartcoinLaunchDate, userTokenAge)
     fwogCompareDate = add_age(fwogLaunchDate, userTokenAge)
     gigaCompareDate = add_age(gigaLaunchDate, userTokenAge)
+    print(gigaCompareDate)
     goatCompareDate = add_age(goatLaunchDate, userTokenAge)
     chillguyCompareDate = add_age(chillguyLaunchDate, userTokenAge)
 
@@ -148,4 +150,16 @@ def get_tweet_impressions(ticker):
         count_data = view_count_data(count_id)
 
     return count_data
-    
+
+def test_main():
+    # Sample mint address for testing
+    sample_mint_address = '5LJMJyR8MtAkbtpf8kFUV7S9oFG3xaGDdcnFxYt9pump'
+
+    # Call the main function with the sample mint address
+    result = main(sample_mint_address)
+
+    # Print the result
+    print("Test Result:", result)
+
+# Run the test case
+test_main()
