@@ -10,7 +10,13 @@
       margin: 0;
       padding: 0;
       font-family: 'Open Sans', sans-serif;
-      background-color: #000;
+    }
+    /* Body background: logo image with dark overlay */
+    body {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url("{{ url_for('static', filename='coinpairlogo.jpg') }}") no-repeat center center fixed;
+      background-size: cover;
+      color: white;
     }
     /* Menu Container at the top left */
     .menu-container {
@@ -27,21 +33,12 @@
     .menu-container a:hover {
       text-decoration: underline;
     }
-    /* Header with image */
-    header {
-      text-align: center;
-      padding: 30px 0;
-    }
-    header img {
-      max-width: 100%;
-      height: auto;
-    }
     /* Center main area (form container) vertically and horizontally */
     .main {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: calc(100vh - 150px); /* Adjusted for header and spacing */
+      height: 100vh;
     }
     .form-container {
       background-color: #00FF00;
@@ -51,7 +48,7 @@
       box-sizing: border-box;
       color: #000;
     }
-    /* Increase inner width by 50% (from 400px to 600px) for a larger input field */
+    /* Increase inner width for larger input field */
     .form-inner {
       width: 600px;
       margin: 0 auto;
@@ -72,7 +69,7 @@
       background-color: #000;
       color: #fff;
       border: none;
-      border-radius: 8px; /* rounded edges for the submit button */
+      border-radius: 8px;
       padding: 10px 20px;
       font-size: 16px;
       cursor: pointer;
@@ -88,11 +85,6 @@
     <a href="about.html">About</a>
     <a href="https://coinpair.gitbook.io/coinpair-docs/">Docs</a>
   </div>
-  
-  <!-- Header with logo image -->
-  <header>
-    <img src="coinpairlogo.jpg" alt="CoinPair Logo">
-  </header>
   
   <!-- Main form area -->
   <div class="main">
