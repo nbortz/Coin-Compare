@@ -50,4 +50,3 @@ def view_count_data(count_id):
 
 # Get balances
 get_balances()
-

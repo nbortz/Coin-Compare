@@ -1,16 +1,27 @@
-name: Secrets Test
+name: Run Application
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  test-secrets:
+  build:
     runs-on: ubuntu-latest
-
+    env:
+      TB_API: ${{ secrets.TB_API }}
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Print secret
-      env:
-        TB_API: ${{ secrets.TB_API }}
-      run: echo "The secret TB_API is: $TB_API"
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Run the application
+        run: python app.py
+
