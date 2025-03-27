@@ -1,5 +1,6 @@
 import requests
 import time
+import os
 # Define the API route and key
 api_route = "https://api.tweetbinder.com"
 api_key = os.getenv("TB_API")
