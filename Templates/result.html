@@ -7,7 +7,6 @@
   <style>
     body {
       background-color: black;
-      color: white;
       font-family: Arial, sans-serif;
       text-align: center;
       background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
@@ -23,14 +22,25 @@
       margin-top: 50px;
     }
     .result-box {
-      background-color: #32CD32; /* Light lime green */
-      color: black;
+      background-color: black;
+      color: lime;
       padding: 20px;
-      border-radius: 15px; /* Rounded corners */
-      width: 250px;
+      border-radius: 15px;
+      width: 312px; /* 25% larger than original 250px */
       font-size: 16px;
       font-weight: bold;
       text-align: left;
+    }
+    .ticker-box {
+      background-color: #f8f8f8; /* Off-white */
+      color: black;
+      padding: 5px 10px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .info {
+      margin-top: 10px;
     }
     .back-button {
       display: inline-block;
@@ -40,6 +50,7 @@
       color: black;
       font-weight: bold;
       border-radius: 10px;
+      text-decoration: none;
     }
     .back-button:hover {
       background-color: gray;
@@ -58,29 +69,38 @@
   <h1>Results</h1>
   <div class="debug-table">
     <h2>Debugging Output</h2>
-    <pre>{{ output_array }}</pre>
+    <p>Our Correlation score is calculated using the volume, marketcap, and X impression differentials between your submitted token and our benchmark tokens.
+       A negative percent differential means that your submitted token is that much smaller than the benchmark at the same age, and a positive
+       percent differential means the submitted token is that much larger than the benchamrk at the same age. 
+    </p>
   </div>
   <div class="container">
     {% set coin_names = ["Bonk", "Wif", "Fartcoin", "Fwog", "Giga", "Goatseus Maximus", "Chill Guy", "User Token"] %}
     {% for coin_data in output_array %}
     <div class="result-box">
       {% if coin_data|length == 5 %}
-        <strong>{{ coin_names[loop.index0] }}:</strong><br>
-        Correlation: {{ "{:,.2f}".format(coin_data[4]) }}<br>
-        MCAP Diff: {{ "{:,.2f}".format(coin_data[0]) }}%<br>
-        VOL Diff: {{ "{:,.2f}".format(coin_data[1]) }}%<br>
-        MCAP: {{ "{:,.2f}".format(coin_data[2]) }}<br>
-        VOL: {{ "{:,.2f}".format(coin_data[3]) }}
+        <div class="ticker-box">{{ coin_names[loop.index0] }}</div>
+        <div class="info">
+          Correlation: {{ "{:,.2f}".format(coin_data[4]) }}<br>
+          <br>
+          MCAP Diff: {{ "{:,.2f}".format(coin_data[0]) }}%<br>
+          VOL Diff: {{ "{:,.2f}".format(coin_data[1]) }}%<br>
+          <br>
+          MCAP: {{ "{:,.2f}".format(coin_data[2]) }}<br>
+          VOL: {{ "{:,.2f}".format(coin_data[3]) }}
+        </div>
       {% else %}
         <!-- For user token data: [userTokenMcap, userTokenVol, userImpressions, userTicker] -->
-        <strong>{{ coin_data[3] }}:</strong><br>
-        MCAP: {{ "{:,.2f}".format(coin_data[0]) }}<br>
-        VOL: {{ "{:,.2f}".format(coin_data[1]) }}<br>
-        User Impressions: {{ "{:,.2f}".format(coin_data[2]) }}
+        <div class="ticker-box">{{ coin_data[3] }}</div>
+        <div class="info">
+          MCAP: {{ "{:,.2f}".format(coin_data[0]) }}<br>
+          VOL: {{ "{:,.2f}".format(coin_data[1]) }}<br>
+          User Impressions: {{ "{:,.2f}".format(coin_data[2]) }}
+        </div>
       {% endif %}
     </div>
-  {% endfor %}
-</div>
+    {% endfor %}
+  </div>
   <a href="/" class="back-button">Go Back</a>
 </body>
 </html>
