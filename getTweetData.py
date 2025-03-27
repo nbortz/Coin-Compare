@@ -2,7 +2,7 @@ import requests
 import time
 import os
 api_route = "https://api.tweetbinder.com"
-api_key = os.environ.get("TB_API")
+api_key = "43015a4f-5110-47c4-923d-d8ecfae37b70"
 
 # Define the headers with the authorization token
 headers = {
