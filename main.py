@@ -100,7 +100,7 @@ def main(mintAdd):
     output_array = [[bonk_mcap_diff, bonk_vol_diff, bonk_mcap, bonk_vol, bonk_score],[wif_mcap_diff, wif_vol_diff, wif_mcap, wif_vol, wif_score],
                     [fart_mcap_diff, fart_vol_diff, fart_mcap, fart_vol, fart_score],[fwog_mcap_diff, fwog_vol_diff, fwog_mcap, fwog_vol, fwog_score],
                     [giga_mcap_diff, giga_vol_diff, giga_mcap, giga_vol, giga_score], [goat_mcap_diff, goat_vol_diff, goat_mcap, goat_vol, goat_score],
-                    [chillguy_mcap_diff, chillguy_vol_diff, chillguy_mcap, chillguy_vol, chillguy_score], [userImpressions]]
+                    [chillguy_mcap_diff, chillguy_vol_diff, chillguy_mcap, chillguy_vol, chillguy_score], [userTokenMcap, userTokenVol, userImpressions, userTicker]]
                     
                     
 

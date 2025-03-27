@@ -61,22 +61,26 @@
     <pre>{{ output_array }}</pre>
   </div>
   <div class="container">
-    {% set coin_names = ["Bonk", "Wif", "Fartcoin", "Fwog", "Giga", "Goatseus Maximus", "Chill Guy", "Twitter Impressions for User Token"] %}
+    {% set coin_names = ["Bonk", "Wif", "Fartcoin", "Fwog", "Giga", "Goatseus Maximus", "Chill Guy", "User Token"] %}
     {% for coin_data in output_array %}
-      <div class="result-box">
+    <div class="result-box">
+      {% if coin_data|length == 5 %}
         <strong>{{ coin_names[loop.index0] }}:</strong><br>
-        {% if coin_data|length == 5 %}
-          Correlation: {{ "{:,.2f}".format(coin_data[4]) }}<br>
-          MCAP Diff: {{ "{:,.2f}".format(coin_data[0]) }}%<br>
-          VOL Diff: {{ "{:,.2f}".format(coin_data[1]) }}%<br>
-          MCAP: {{ "{:,.2f}".format(coin_data[2]) }}<br>
-          VOL: {{ "{:,.2f}".format(coin_data[3]) }}
-        {% else %}
-          User Impressions: {{ "{:,.2f}".format(coin_data[0]) }}
-        {% endif %}
-      </div>
-    {% endfor %}
-  </div>
+        Correlation: {{ "{:,.2f}".format(coin_data[4]) }}<br>
+        MCAP Diff: {{ "{:,.2f}".format(coin_data[0]) }}%<br>
+        VOL Diff: {{ "{:,.2f}".format(coin_data[1]) }}%<br>
+        MCAP: {{ "{:,.2f}".format(coin_data[2]) }}<br>
+        VOL: {{ "{:,.2f}".format(coin_data[3]) }}
+      {% else %}
+        <!-- For user token data: [userTokenMcap, userTokenVol, userImpressions, userTicker] -->
+        <strong>{{ coin_data[3] }}:</strong><br>
+        MCAP: {{ "{:,.2f}".format(coin_data[0]) }}<br>
+        VOL: {{ "{:,.2f}".format(coin_data[1]) }}<br>
+        User Impressions: {{ "{:,.2f}".format(coin_data[2]) }}
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
   <a href="/" class="back-button">Go Back</a>
 </body>
 </html>
