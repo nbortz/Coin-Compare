@@ -27,12 +27,19 @@
       font-weight: bold;
       font-size: 1.5em;
     }
+    .results-container {
+      background-color: rgba(64, 64, 64, 0.7); /* Transparent dark gray */
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 15px;
+    }
     .container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      margin-top: 50px;
+      margin-top: 20px;
     }
     .result-box {
       background-color: black;
@@ -81,33 +88,36 @@
 <body>
   <div class="results-header">Results</div>
   
-  <div class="container">
-    {% set coin_names = ["Bonk", "Wif", "Fartcoin", "Fwog", "Giga", "Goatseus Maximus", "Chill Guy", "User Token"] %}
-    {% for coin_data in output_array %}
-    <div class="result-box">
-      {% if coin_data|length == 5 %}
-        <div class="ticker-box">{{ coin_names[loop.index0] }}</div>
-        <div class="info">
-          Correlation: {{ "{:,.2f}".format(coin_data[4]) }}<br>
-          <br>
-          MCAP Diff: {{ "{:,.2f}".format(coin_data[0]) }}%<br>
-          VOL Diff: {{ "{:,.2f}".format(coin_data[1]) }}%<br>
-          <br>
-          MCAP: {{ "{:,.2f}".format(coin_data[2]) }}<br>
-          VOL: {{ "{:,.2f}".format(coin_data[3]) }}
-        </div>
-      {% else %}
-        <!-- For user token data: [userTokenMcap, userTokenVol, userImpressions, userTicker] -->
-        <div class="ticker-box">{{ coin_data[3] }}</div>
-        <div class="info">
-          MCAP: {{ "{:,.2f}".format(coin_data[0]) }}<br>
-          VOL: {{ "{:,.2f}".format(coin_data[1]) }}<br>
-          User Impressions: {{ "{:,.2f}".format(coin_data[2]) }}
-        </div>
-      {% endif %}
+  <div class="results-container">
+    <div class="container">
+      {% set coin_names = ["Bonk", "Wif", "Fartcoin", "Fwog", "Giga", "Goatseus Maximus", "Chill Guy", "User Token"] %}
+      {% for coin_data in output_array %}
+      <div class="result-box">
+        {% if coin_data|length == 5 %}
+          <div class="ticker-box">{{ coin_names[loop.index0] }}</div>
+          <div class="info">
+            Correlation: {{ "{:,.2f}".format(coin_data[4]) }}<br>
+            <br>
+            MCAP Diff: {{ "{:,.2f}".format(coin_data[0]) }}%<br>
+            VOL Diff: {{ "{:,.2f}".format(coin_data[1]) }}%<br>
+            <br>
+            MCAP: {{ "{:,.2f}".format(coin_data[2]) }}<br>
+            VOL: {{ "{:,.2f}".format(coin_data[3]) }}
+          </div>
+        {% else %}
+          <!-- For user token data: [userTokenMcap, userTokenVol, userImpressions, userTicker] -->
+          <div class="ticker-box">{{ coin_data[3] }}</div>
+          <div class="info">
+            MCAP: {{ "{:,.2f}".format(coin_data[0]) }}<br>
+            VOL: {{ "{:,.2f}".format(coin_data[1]) }}<br>
+            User Impressions: {{ "{:,.2f}".format(coin_data[2]) }}
+          </div>
+        {% endif %}
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
+  
   <div class="debug-table">
     <p>Our correlation scores are calculated using the volume, marketcap, and X impressions differentials between your submitted token and our benchmark tokens,
       when they were the same age. A negative percent differential means that the benchmark token had that much more volume, makretcap, or impressions, at the same age as the 
