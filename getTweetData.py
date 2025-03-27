@@ -49,6 +49,5 @@ def view_count_data(count_id):
         return(0)
 
 # Get balances
-#get_balances()
-print(f"API Key: {api_key}")
+get_balances()
 

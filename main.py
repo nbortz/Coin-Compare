@@ -100,7 +100,7 @@ def main(mintAdd):
     output_array = [[bonk_mcap_diff, bonk_vol_diff, bonk_mcap, bonk_vol, bonk_score],[wif_mcap_diff, wif_vol_diff, wif_mcap, wif_vol, wif_score],
                     [fart_mcap_diff, fart_vol_diff, fart_mcap, fart_vol, fart_score],[fwog_mcap_diff, fwog_vol_diff, fwog_mcap, fwog_vol, fwog_score],
                     [giga_mcap_diff, giga_vol_diff, giga_mcap, giga_vol, giga_score], [goat_mcap_diff, goat_vol_diff, goat_mcap, goat_vol, goat_score],
-                    [chillguy_mcap_diff, chillguy_vol_diff, chillguy_mcap, chillguy_vol, chillguy_score], [userTokenMcap, userTokenVol, userImpressions, userTicker]]
+                    [chillguy_mcap_diff, chillguy_vol_diff, chillguy_mcap, chillguy_vol, chillguy_score], [userImpressions]]
                     
                     
 
@@ -131,8 +131,8 @@ def compare_token_with_benchmark(benchmark_file, compare_date, user_mcap, user_v
         vol = benchmark_data['volume'].iat[-(userTokenAge)]
     except IndexError:
         # Jump to the latest entry in the data if index is out of bounds
-        mcap = benchmark_data['marketCap'].iat[-1]
-        vol = benchmark_data['volume'].iat[-1]
+        mcap = benchmark_data['marketCap'].iat[1]
+        vol = benchmark_data['volume'].iat[1]
         
     mcap_diff = compare_mcap(benchmark_data, user_mcap)
     vol_diff = compare_volume(benchmark_data, user_vol)
@@ -151,8 +151,7 @@ def get_tweet_impressions(ticker):
     }
     
     #test count id: "4c30abe4-d62b-427a-a263-e22b020bef3f"
-    count_id = "4c30abe4-d62b-427a-a263-e22b020bef3f"
-    #create_twitter_count("7-day", query)
+    count_id = create_twitter_count("7-day", query)
     time.sleep(10)
     if count_id:
         count_data = view_count_data(count_id)
