@@ -14,6 +14,19 @@
       background-size: cover;
       color: white;
     }
+    .results-header {
+      background-color: #f8f8f8; /* Same as ticker boxes */
+      color: black;
+      border-radius: 10px;
+      width: 25%;
+      margin: 20px auto;
+      height: 3em; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -23,7 +36,7 @@
     }
     .result-box {
       background-color: black;
-      color: lime;
+      color: lime; /* Brighter green text */
       padding: 20px;
       border-radius: 15px;
       width: 312px; /* 25% larger than original 250px */
@@ -57,7 +70,7 @@
     }
     .debug-table {
       margin-top: 20px;
-      background-color: rgb(200, 200, 200);
+      background-color: rgb(189, 189, 189);
       color: black;
       padding: 20px;
       border-radius: 10px;
@@ -66,8 +79,14 @@
   </style>
 </head>
 <body>
-  <h1>Results</h1>
-  
+  <div class="results-header">Results</div>
+  <div class="debug-table">
+    <p>Our correlation scores are calculated using the volume, marketcap, and X impressions differentials between your submitted token and our benchmark tokens,
+      when they were the same age. A negative percent differential means that the benchmark token had that much more volume, makretcap, or impressions, at the same age as the 
+      submitted token. A positive percent differential means the subimtted token has that much more in volume, marketcap, or impressions, than the benchmark
+      did at the same age.
+    </p>>
+  </div>
   <div class="container">
     {% set coin_names = ["Bonk", "Wif", "Fartcoin", "Fwog", "Giga", "Goatseus Maximus", "Chill Guy", "User Token"] %}
     {% for coin_data in output_array %}
@@ -94,12 +113,6 @@
       {% endif %}
     </div>
     {% endfor %}
-  </div>
-  <div class="debug-table">
-    <p>Our correlation score is calculated using the volume, marketcap, and X impression differentials between your submitted token and our benchmark tokens.
-       A negative percent differential means that your submitted token is that much smaller than the benchmark at the same age, and a positive
-       percent differential means the submitted token is that much larger than the benchamrk at the same age. 
-    </p>
   </div>
   <a href="/" class="back-button">Go Back</a>
 </body>
