@@ -87,13 +87,13 @@ def main(mintAdd):
 
     #Calculate scores
     #TODO:revisit score calc
-    bonk_score = (bonk_mcap_diff + bonk_vol_diff + (math.sqrt(userImpressions)/100))/3
-    wif_score = (wif_mcap_diff + wif_vol_diff + (math.sqrt(userImpressions)/100))/3
-    fart_score = (fart_mcap_diff + fart_vol_diff + (math.sqrt(userImpressions)/100))/3
-    fwog_score = (fwog_mcap_diff + fwog_vol_diff + (math.sqrt(userImpressions)/100))/3
-    giga_score = (giga_mcap_diff + giga_vol_diff + (math.sqrt(userImpressions)/100))/3
-    goat_score = (goat_mcap_diff + goat_vol_diff + (math.sqrt(userImpressions)/100))/3
-    chillguy_score = (chillguy_mcap_diff + chillguy_vol_diff + (math.sqrt(userImpressions)/100))/3
+    bonk_score = calculate_score(bonk_mcap_diff, bonk_vol_diff)
+    wif_score = calculate_score(wif_mcap_diff, wif_vol_diff)
+    fart_score = calculate_score(fart_mcap_diff, fart_vol_diff)
+    fwog_score = calculate_score(fwog_mcap_diff, fwog_vol_diff)
+    giga_score = calculate_score(giga_mcap_diff, giga_vol_diff)
+    goat_score = calculate_score(goat_mcap_diff, goat_vol_diff)
+    chillguy_score = calculate_score(chillguy_mcap_diff, chillguy_vol_diff)
 
     
 
@@ -158,6 +158,94 @@ def get_tweet_impressions(ticker):
         count_data = view_count_data(count_id)
 
     return count_data
+
+def calculate_score(mcap_diff, vol_diff):
+    # Initialize score
+    score = 100
+    
+    # Check positive mcap diff conditions
+    if mcap_diff > 50000:
+        score = score - 30
+    elif mcap_diff > 10000:
+        score = score - 25
+    elif mcap_diff > 1000:
+        score = score-20
+    elif mcap_diff > 500:
+        score = score-15
+    elif mcap_diff > 100:
+        score = score-10
+    elif mcap_diff > 50:
+        score = score-8
+    elif mcap_diff > 25:
+        score = score - 6
+    elif mcap_diff > 10:
+        score = score - 4
+    
+    # Check negative mcap diff conditions
+    elif mcap_diff < -99:
+        score = score-30
+    elif mcap_diff < -90:
+        score = score - 25
+    elif mcap_diff < -80:
+        score = score - 20
+    elif mcap_diff < -60:
+        score = score - 15
+    elif mcap_diff < -50:
+        score = score - 10
+    elif mcap_diff < - 35:
+        score = score - 8
+    elif mcap_diff < - 25:
+        score = score - 6
+    elif mcap_diff < -15:
+        score = score - 4
+    elif mcap_diff < -7:
+        score = score - 2
+    elif mcap_diff < -3:
+        score = score
+
+    # Check positive mcap diff conditions
+    if vol_diff > 50000:
+        score = score - 30
+    elif vol_diff > 10000:
+        score = score - 25
+    elif vol_diff > 1000:
+        score = score-20
+    elif vol_diff > 500:
+        score = score-15
+    elif vol_diff > 100:
+        score = score-10
+    elif vol_diff > 50:
+        score = score-8
+    elif vol_diff > 25:
+        score = score - 6
+    elif vol_diff > 10:
+        score = score - 4
+    
+    # Check negative mcap diff conditions
+    elif vol_diff < -99:
+        score = score-30
+    elif vol_diff < -90:
+        score = score - 25
+    elif vol_diff < -80:
+        score = score - 20
+    elif vol_diff < -60:
+        score = score - 15
+    elif vol_diff < -50:
+        score = score - 10
+    elif vol_diff < - 35:
+        score = score - 8
+    elif vol_diff < - 25:
+        score = score - 6
+    elif vol_diff < -15:
+        score = score - 4
+    elif vol_diff < -7:
+        score = score - 2
+    elif vol_diff < -3:
+        score = score
+
+    return score
+    
+        
 
 def test_main():
     # Sample mint address for testing
