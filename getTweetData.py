@@ -3,7 +3,7 @@ import time
 import os
 # Define the API route and key
 api_route = "https://api.tweetbinder.com"
-api_key = os.getenv("TB_API")
+api_key = os.environ.get("TB_API")
 
 # Define the headers with the authorization token
 headers = {
@@ -49,5 +49,6 @@ def view_count_data(count_id):
         return(0)
 
 # Get balances
-get_balances()
+#get_balances()
+print(f"API Key: {api_key}")
 
