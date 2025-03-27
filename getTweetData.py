@@ -1,7 +1,6 @@
 import requests
 import time
 import os
-# Define the API route and key
 api_route = "https://api.tweetbinder.com"
 api_key = os.environ.get("TB_API")
 
@@ -50,4 +49,3 @@ def view_count_data(count_id):
 
 # Get balances
 #get_balances()
-
