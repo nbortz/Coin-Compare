@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      API_KEY: ${{ secrets.TB_API }}
+      TB_API: ${{ secrets.TB_API }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
