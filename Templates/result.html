@@ -57,7 +57,7 @@
     }
     .debug-table {
       margin-top: 20px;
-      background-color: white;
+      background-color: rgb(200, 200, 200);
       color: black;
       padding: 20px;
       border-radius: 10px;
@@ -67,13 +67,7 @@
 </head>
 <body>
   <h1>Results</h1>
-  <div class="debug-table">
-    <h2>Debugging Output</h2>
-    <p>Our Correlation score is calculated using the volume, marketcap, and X impression differentials between your submitted token and our benchmark tokens.
-       A negative percent differential means that your submitted token is that much smaller than the benchmark at the same age, and a positive
-       percent differential means the submitted token is that much larger than the benchamrk at the same age. 
-    </p>
-  </div>
+  
   <div class="container">
     {% set coin_names = ["Bonk", "Wif", "Fartcoin", "Fwog", "Giga", "Goatseus Maximus", "Chill Guy", "User Token"] %}
     {% for coin_data in output_array %}
@@ -100,6 +94,12 @@
       {% endif %}
     </div>
     {% endfor %}
+  </div>
+  <div class="debug-table">
+    <p>Our correlation score is calculated using the volume, marketcap, and X impression differentials between your submitted token and our benchmark tokens.
+       A negative percent differential means that your submitted token is that much smaller than the benchmark at the same age, and a positive
+       percent differential means the submitted token is that much larger than the benchamrk at the same age. 
+    </p>
   </div>
   <a href="/" class="back-button">Go Back</a>
 </body>
