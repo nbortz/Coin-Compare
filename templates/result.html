@@ -14,25 +14,25 @@
       background-size: cover;
       color: white;
     }
-    .results-header {
-      background-color: #f8f8f8; /* Same as ticker boxes */
-      color: black;
-      border-radius: 10px;
-      width: 25%;
+    .results-container {
+      background-color: rgba(64, 64, 64, 0.7); /* Transparent dark gray */
+      width: 80%;
       margin: 20px auto;
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .results-header {
+      background-color: rgba(64, 64, 64, 0.7); /* Transparent dark gray */
+      color: white;
+      border-radius: 10px;
+      width: 100%;
+      margin-bottom: 20px;
       height: 3em; 
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
       font-size: 1.5em;
-    }
-    .results-container {
-      background-color: rgba(64, 64, 64, 0.7); /* Transparent dark gray */
-      width: 80%;
-      margin: 0 auto;
-      padding: 20px;
-      border-radius: 15px;
     }
     .container {
       display: flex;
@@ -46,13 +46,13 @@
       color: lime; /* Brighter green text */
       padding: 20px;
       border-radius: 15px;
-      width: 312px; /* 25% larger than original 250px */
+      width: 312px;
       font-size: 16px;
       font-weight: bold;
       text-align: left;
     }
     .ticker-box {
-      background-color: #f8f8f8; /* Off-white */
+      background-color: #f8f8f8;
       color: black;
       padding: 5px 10px;
       border-radius: 10px;
@@ -62,12 +62,16 @@
     .info {
       margin-top: 10px;
     }
+    .debug-text {
+      margin-top: 20px;
+      text-align: left;
+    }
     .back-button {
       display: inline-block;
       margin-top: 30px;
       padding: 10px 20px;
-      background-color: white;
-      color: black;
+      background-color: rgba(64, 64, 64, 0.7); /* Transparent dark gray */
+      color: white;
       font-weight: bold;
       border-radius: 10px;
       text-decoration: none;
@@ -75,20 +79,13 @@
     .back-button:hover {
       background-color: gray;
     }
-    .debug-table {
-      margin-top: 20px;
-      background-color: rgb(189, 189, 189);
-      color: black;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: left;
-    }
   </style>
 </head>
+<div class="results-header">Results</div>
 <body>
-  <div class="results-header">Results</div>
-  
   <div class="results-container">
+    
+    
     <div class="container">
       {% set coin_names = ["Bonk", "Wif", "Fartcoin", "Fwog", "Giga", "Goatseus Maximus", "Chill Guy", "User Token"] %}
       {% for coin_data in output_array %}
@@ -116,15 +113,17 @@
       </div>
       {% endfor %}
     </div>
+    
+    <div class="debug-text">
+      <p>
+        Our correlation scores are calculated using the volume, marketcap, and X impressions differentials between your submitted token and our benchmark tokens,
+        when they were the same age. A negative percent differential means that the benchmark token had that much more volume, marketcap, or impressions, at the same age as the 
+        submitted token. A positive percent differential means the submitted token has that much more in volume, marketcap, or impressions, than the benchmark
+        did at the same age.
+      </p>
+    </div>
+    
+    <a href="/" class="back-button">Go Back</a>
   </div>
-  
-  <div class="debug-table">
-    <p>Our correlation scores are calculated using the volume, marketcap, and X impressions differentials between your submitted token and our benchmark tokens,
-      when they were the same age. A negative percent differential means that the benchmark token had that much more volume, makretcap, or impressions, at the same age as the 
-      submitted token. A positive percent differential means the subimtted token has that much more in volume, marketcap, or impressions, than the benchmark
-      did at the same age.
-    </p>
-  </div>
-  <a href="/" class="back-button">Go Back</a>
 </body>
 </html>
