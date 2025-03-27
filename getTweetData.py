@@ -49,4 +49,5 @@ def view_count_data(count_id):
         return(0)
 
 # Get balances
-get_balances()
+#get_balances()
+
