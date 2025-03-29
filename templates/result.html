@@ -101,13 +101,13 @@
             MCAP: {{ "{:,.2f}".format(coin_data[2]) }}<br>
             VOL: {{ "{:,.2f}".format(coin_data[3]) }}
           </div>
-        {% else %}
+          {% else %}
           <!-- For user token data: [userTokenMcap, userTokenVol, userImpressions, userTicker] -->
           <div class="ticker-box">{{ coin_data[3] }}</div>
           <div class="info">
             MCAP: {{ "{:,.2f}".format(coin_data[0]) }}<br>
             VOL: {{ "{:,.2f}".format(coin_data[1]) }}<br>
-            User Impressions: {{ "{:,.2f}".format(coin_data[2]) }}
+            User Impressions: {% if coin_data[2] is not none %}{{ "{:,.2f}".format(coin_data[2]) }}{% else %}N/A{% endif %}
           </div>
         {% endif %}
       </div>
