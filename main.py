@@ -151,7 +151,8 @@ def get_tweet_impressions(ticker):
     }
     
     #test count id: "4c30abe4-d62b-427a-a263-e22b020bef3f"
-    count_id = create_twitter_count("7-day", query)
+    count_id = "4c30abe4-d62b-427a-a263-e22b020bef3f"
+    #create_twitter_count("7-day", query)
     time.sleep(10)
     if count_id:
         count_data = view_count_data(count_id)
@@ -256,4 +257,4 @@ def test_main():
     # Print the result
     print("Test Result:", result)
 
-
+test_main()
