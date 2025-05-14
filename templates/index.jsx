@@ -1,3 +1,4 @@
+{% raw %}
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
@@ -148,3 +149,4 @@ const CoinPairPage = () => {
 };
 
 export default CoinPairPage;
+{% endraw %}
