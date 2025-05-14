@@ -11,7 +11,7 @@ app = Flask(__name__)
 # Home page route
 @app.route('/', methods=["GET"])
 def home():
-    return render_template('index.html')
+    return render_template('index.jsx')
 
 # Existing result page (still uses templates)
 @app.route("/result", methods=["POST", "GET"])
@@ -20,11 +20,11 @@ def result():
         user_input = request.form["user_value"]  # Get input from form
         output_array = main.main(user_input)
         print(output_array)
-        return render_template("result.html", output_array=output_array)
+        return render_template("result.jsx", output_array=output_array)
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.jsx')
 
 # 🚀 **NEW API Endpoint for JSON-based queries**
 @app.route('/api/get_token_data', methods=["POST"])
