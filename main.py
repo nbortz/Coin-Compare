@@ -11,27 +11,7 @@ import time
 from compareFunctions import get_benchmark_data, compare_mcap, compare_volume, percent_and_total_diff
 from getTweetData import create_twitter_count, view_count_data
 import math
-"""
-The main Logic function will intake a mint address from a user. 
 
-Age) Then we will call getTokenAge so we can determine the timestamp we will be looking at for each compare token --> Returns age in days of user token
-We need logic in the middle to get compare date for each suuccessful token. Ie Wif launch date plus user token age, repeat for each compare token
-
-Ticker) Then we will call getTickerFrom Mint --> Returns a ticker
-
-Impressions) Then we can call getTweetData with the ticker --> Returns impresssion count
-We will also need to call getTweetData for each compare token. Store each reply in a csv with a date/time for future reference
-
-Mcap) Pull user token mcap from dexscreener API, pull compare token mcap from csv files.
-
-Holder to Mcap) Pull holder to mcap for user token with getHoldertoMcap function. Need to buy data for compare tokens
-
-Volume) Pull user token volume from dexscreener, pull compare token vol from csv files
-
-Comparision) Compare Marketcap, Holder to Marketcap Ratio, Volume, and Impressions at a certain timestamp, this should be done with compareAlgo
-
-Correlation) Return correlation scores to user on website
-"""
 def main(mintAdd):
     # Declare global variables
 
