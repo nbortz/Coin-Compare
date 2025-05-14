@@ -11,7 +11,8 @@ app = Flask(__name__)
 # Home page route
 @app.route('/', methods=["GET"])
 def home():
-    return render_template('index.jsx')
+    return render_template('base.html')
+
 
 # Existing result page (still uses templates)
 @app.route("/result", methods=["POST", "GET"])
