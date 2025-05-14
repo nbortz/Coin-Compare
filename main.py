@@ -100,7 +100,7 @@ def main(mintAdd):
     output_array = [[bonk_mcap_diff, bonk_vol_diff, bonk_mcap, bonk_vol, bonk_score],[wif_mcap_diff, wif_vol_diff, wif_mcap, wif_vol, wif_score],
                     [fart_mcap_diff, fart_vol_diff, fart_mcap, fart_vol, fart_score],[fwog_mcap_diff, fwog_vol_diff, fwog_mcap, fwog_vol, fwog_score],
                     [giga_mcap_diff, giga_vol_diff, giga_mcap, giga_vol, giga_score], [goat_mcap_diff, goat_vol_diff, goat_mcap, goat_vol, goat_score],
-                    [chillguy_mcap_diff, chillguy_vol_diff, chillguy_mcap, chillguy_vol, chillguy_score], [userImpressions]]
+                    [chillguy_mcap_diff, chillguy_vol_diff, chillguy_mcap, chillguy_vol, chillguy_score], [userTokenMcap, userTokenVol, userImpressions, userTicker]]
                     
                     
 
@@ -244,6 +244,53 @@ def calculate_score(mcap_diff, vol_diff):
         score = score
 
     return score
+
+def calculate_correlation(mcap_diff, vol_diff, imp_diff):
+    """
+    Calculate a correlation score between 0 and 100 based on percent differences
+    in marketcap, volume, and impressions.
+    
+    Parameters:
+      mcap_diff (float): Marketcap percent difference (e.g., 20 for 20%)
+      vol_diff (float): Volume percent difference (e.g., 15 for 15%)
+      imp_diff (float): Impressions percent difference (e.g., 10 for 10%)
+      
+    Returns:
+      float: Correlation score between 0 (least similar) and 100 (perfect match).
+    """
+    # Define weights
+    weight_mcap = 0.25
+    weight_vol = 0.25
+    weight_imp = 0.5
+
+    # Convert percent differences to normalized fractions (0 to 1), clamping at 1.
+    norm_mcap = min(mcap_diff / 100.0, 1)
+    norm_vol  = min(vol_diff / 100.0, 1)
+    norm_imp  = min(imp_diff / 100.0, 1)
+    
+    # Compute the weighted sum of differences.
+    weighted_diff = (weight_mcap * norm_mcap +
+                     weight_vol * norm_vol +
+                     weight_imp * norm_imp)
+    
+    # Calculate the correlation score.
+    # A perfect match (0 difference) yields 100, while a total difference (weighted_diff=1) yields 0.
+    correlation = (1 - weighted_diff) * 100
+    
+    # Ensure the score is between 0 and 100.
+    return max(0, min(100, correlation))
+
+
+# Example usage:
+if __name__ == "__main__":
+    # Example percent differences:
+    marketcap_percent_diff = 20  # 20%
+    volume_percent_diff = 15     # 15%
+    impressions_percent_diff = 10  # 10%
+
+    score = calculate_correlation(marketcap_percent_diff, volume_percent_diff, impressions_percent_diff)
+    print(f"Correlation Score: {score:.2f}")
+
     
         
 
