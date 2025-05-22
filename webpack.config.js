@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
   entry: './src/index.jsx', // Your React entry file
   output: {
-    path: path.resolve(__dirname, 'static'),
+    path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js'     // Output will be placed here as static/bundle.js
   },
   resolve: {
