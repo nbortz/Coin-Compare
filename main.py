@@ -104,7 +104,7 @@ def main(mintAdd):
 #Comparision for mcap and vol
 def compare_token_with_benchmark(benchmark_file, compare_date, user_mcap, user_vol, userTokenAge):
     benchmark_data = get_benchmark_data(benchmark_file, compare_date, ',')
-    print(benchmark_data)
+    #print(benchmark_data)
     
     try:
         mcap = benchmark_data['marketCap'].iat[-(userTokenAge)]
@@ -284,4 +284,3 @@ def test_main():
     # Print the result
     print("Test Result:", result)
 
-test_main()
