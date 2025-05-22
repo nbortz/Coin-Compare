@@ -1,7 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client'; // React 18 mounting API
 import { Helmet } from 'react-helmet';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CorrelationScoresPage from './components/CorrelationScoresPage';
 
+// Home page component (the form page)
 const CoinPairPage = () => {
   // Inline styles
   const pageStyles = {
@@ -12,7 +15,7 @@ const CoinPairPage = () => {
     background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
       url('/static/coinpairlogo.jpg') no-repeat center center fixed`,
     backgroundSize: 'cover',
-    color: '#fff',
+    color: '#fff'
   };
 
   const menuLinkStyles = {
@@ -70,10 +73,7 @@ const CoinPairPage = () => {
           <a href="/" style={menuLinkStyles}>
             Home
           </a>
-          <a
-            href="https://coinpair.gitbook.io/coinpair-docs/"
-            style={menuLinkStyles}
-          >
+          <a href="https://coinpair.gitbook.io/coinpair-docs/" style={menuLinkStyles}>
             Docs
           </a>
         </div>
@@ -179,13 +179,27 @@ const CoinPairPage = () => {
   );
 };
 
+// Main App component that defines our routes for the single-page app
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        {/* Home page route */}
+        <Route path="/" element={<CoinPairPage />} />
+
+        {/* Result page route */}
+        <Route path="/result" element={<CorrelationScoresPage outputArray={[]} />} />
+      </Routes>
+    </Router>
+  );
+};
+
 const container = document.getElementById('root');
 if (container) {
-  // Use createRoot if using React 18
   const root = createRoot(container);
   root.render(
     <React.StrictMode>
-      <CoinPairPage />
+      <App />
     </React.StrictMode>
   );
 } else {

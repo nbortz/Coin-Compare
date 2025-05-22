@@ -8,35 +8,25 @@ import main  # Your existing Python functions
 
 app = Flask(__name__)
 
-# Home page route
-@app.route('/', methods=["GET"])
-def home():
+# Catch-all route for your single-page application
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    # This returns the base.html template,
+    # which contains the mounting point (e.g. <div id="root"></div>)
+    # and loads the bundled React app.
     return render_template('base.html')
 
-
-# Existing result page (still uses templates)
-@app.route("/result", methods=["POST", "GET"])
-def result():
-    if request.method == "POST":
-        user_input = request.form["user_value"]  # Get input from form
-        output_array = main.main(user_input)
-        print(output_array)
-        return render_template("result.jsx", output_array=output_array)
-
-@app.route('/about')
-def about():
-    return render_template('about.jsx')
-
-# 🚀 **NEW API Endpoint for JSON-based queries**
+# API Endpoint for JSON-based queries remains unchanged
 @app.route('/api/get_token_data', methods=["POST"])
 def get_token_data():
-    data = request.json  # Get JSON input from frontend
+    data = request.json  # Get JSON input from the frontend
     mintAdd = data.get("mintAdd")
 
     if not mintAdd:
         return jsonify({"error": "Missing mintAdd"}), 400
 
-    # Call `main.main()` with user input
+    # Call main.main() (your Python function) with user input
     output_array = main.main(mintAdd)
 
     return jsonify({"data": output_array})  # Respond with JSON output

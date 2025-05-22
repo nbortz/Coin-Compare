@@ -1,3 +1,4 @@
+// src/components/CorrelationScoresPage.jsx
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
@@ -12,7 +13,7 @@ const CorrelationScoresPage = ({ outputArray }) => {
     color: 'white',
     minHeight: '100vh',
     margin: 0,
-    paddingTop: '3em',
+    paddingTop: '3em'
   };
 
   const resultsContainer = {
@@ -20,7 +21,7 @@ const CorrelationScoresPage = ({ outputArray }) => {
     width: '80%',
     margin: 'auto',
     padding: '20px',
-    borderRadius: '15px',
+    borderRadius: '15px'
   };
 
   const resultsHeader = {
@@ -34,7 +35,7 @@ const CorrelationScoresPage = ({ outputArray }) => {
     alignItems: 'center',
     justifyContent: 'center',
     fontWeight: 'bold',
-    fontSize: '1.5em',
+    fontSize: '1.5em'
   };
 
   const containerStyle = {
@@ -42,7 +43,7 @@ const CorrelationScoresPage = ({ outputArray }) => {
     flexWrap: 'wrap',
     justifyContent: 'center',
     gap: '20px',
-    marginTop: '20px',
+    marginTop: '20px'
   };
 
   const resultBox = {
@@ -53,7 +54,7 @@ const CorrelationScoresPage = ({ outputArray }) => {
     width: '312px',
     fontSize: '16px',
     fontWeight: 'bold',
-    textAlign: 'left',
+    textAlign: 'left'
   };
 
   const tickerBox = {
@@ -62,14 +63,14 @@ const CorrelationScoresPage = ({ outputArray }) => {
     padding: '5px 10px',
     borderRadius: '10px',
     display: 'inline-block',
-    marginBottom: '10px',
+    marginBottom: '10px'
   };
 
   const debugText = {
     marginTop: '20px',
     textAlign: 'left',
     width: '80%',
-    margin: '20px auto',
+    margin: '20px auto'
   };
 
   const backButton = {
@@ -80,13 +81,10 @@ const CorrelationScoresPage = ({ outputArray }) => {
     color: 'white',
     fontWeight: 'bold',
     borderRadius: '10px',
-    textDecoration: 'none',
+    textDecoration: 'none'
   };
 
-  const backHover = {
-    backgroundColor: 'gray',
-  };
-
+  // You might use onMouseOver / onMouseOut but for simplicity, inline styling can be modified through state or CSS hover classes.
   const coinNames = [
     'Bonk', 'Wif', 'Fartcoin', 'Fwog', 'Giga', 'Goatseus Maximus', 'Chill Guy', 'User Token'
   ];
@@ -138,9 +136,7 @@ const CorrelationScoresPage = ({ outputArray }) => {
             </p>
           </div>
 
-          <a href="/" style={backButton} onMouseOver={e => e.currentTarget.style.backgroundColor = backHover.backgroundColor} onMouseOut={e => e.currentTarget.style.backgroundColor = backButton.backgroundColor}>
-            Go Back
-          </a>
+          <a href="/" style={backButton}>Go Back</a>
         </div>
       </div>
     </>
